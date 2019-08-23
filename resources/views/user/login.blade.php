@@ -2,7 +2,6 @@
 @include('user.include.header')
 
 
-
 	<div class="container">
 <div class="login-page">
 	<div class="row">
