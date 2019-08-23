@@ -64,7 +64,7 @@
 	<script src='https://vjs.zencdn.net/7.6.0/video.js'></script>
 	<script>
 		$('#my-video').bind("contextmenu",function(e){
-	      return false;
+	      return false ;
 	   	});
 	</script>
 @stop
