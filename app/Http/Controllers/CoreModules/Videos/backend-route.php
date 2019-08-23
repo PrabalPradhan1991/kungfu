@@ -112,4 +112,10 @@ Route::group(['prefix' => 'admin/stages', 'namespace' => '\App\Http\Controllers\
 		'as'	=>	'admin-stage-requests-post',
 		'uses'	=>	'StagesController@postStageRequests'
 	])->middleware(['onlySuperadmin']);
+
+	Route::post('request-access-stage/{stage_id}', [
+		'as'	=>	'reqeust-access-stage-post',
+		'uses'	=>	'StagesController@postRequestAccess',
+		'middleware'	=>	'auth'
+	]);
 });

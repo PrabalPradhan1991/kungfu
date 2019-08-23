@@ -58,6 +58,92 @@ class PaypalController extends Controller
                 ->with('gift_cards', $gift_cards)*/;
     }
 
+    public function postBuyStage() {
+        $input = request()->all();
+
+        $user_id = request()->get('user_id');
+        $stage_id = request()->get('stage_id');
+        $this->amount = request()->get('amount');
+        $return_url = request()->get('return_url');
+
+        if($input['payment_method'] == 'By Bank') {
+            (new \App\Http\Controllers\CoreModules\Videos\VideoPurchaseModel)->purchaseVideo($user_id, $stage_id, 'review');
+            session()->flash('success-msg', 'Once we verify payment. You will be able to access this page');
+            return redirect()->route('view-stages');
+        }
+
+        $payer = new Payer();
+                $payer->setPaymentMethod('paypal');
+        
+        $redirect_urls = new RedirectUrls();
+        $redirect_urls->setReturnUrl(URL::route('buy-stage-status')) /** Specify return URL **/
+                      ->setCancelUrl(URL::route('buy-stage-status'));
+        
+        $payment = new Payment();
+        $payment->setIntent('Sale')
+            ->setPayer($payer)
+            ->setRedirectUrls($redirect_urls)
+            ->setTransactions(array($this->transaction));
+
+
+        try {
+            $payment->create($this->_api_context);
+        } catch (\Exception $ex) {
+            //if (\Config::get('app.debug')) {
+            \Session::flash('friendly-error-msg', 'Connection timeout');
+            //\Session::flash('friendly-error-msg', 'Some error occur, sorry for inconvenient');
+           return Redirect::to($return_url);
+        }
+
+        foreach ($payment->getLinks() as $link) {
+            if ($link->getRel() == 'approval_url') {
+                $redirect_url = $link->getHref();
+                break;
+            }
+        }
+        
+        /** add payment ID to session **/
+        Session::put('paypal_payment_id', $payment->getId());
+        if (isset($redirect_url)) {
+        /** redirect to paypal **/
+                    return Redirect::away($redirect_url);
+        }
+        
+        \Session::flash('friendly-error-msg', 'Unknown error occurred');
+                return Redirect::to($return_url);
+
+    }
+
+    public function getBuyStageStatus() {
+        $payment_id = Session::get('paypal_payment_id');
+        $paypal_payment_details = \Session::get('paypal-payment-details');
+        \Session::forget('paypal-payment-details');
+        /** clear the session payment ID **/
+        Session::forget('paypal_payment_id');
+        if (empty(Input::get('PayerID')) || empty(Input::get('token')) || is_null($paypal_payment_details)) {
+            \Session::flash('friendly-error-msg', 'Payment failed');
+            return redirect()->route('paywithpaypal', $user_id);
+        }
+
+        $payment = Payment::get($payment_id, $this->_api_context);
+        
+
+        $execution = new PaymentExecution();
+        $execution->setPayerId(Input::get('PayerID'));
+        /**Execute the payment **/
+        $result = $payment->execute($execution, $this->_api_context);
+        if ($result->getState() == 'approved') {
+            //$id = $this->storeInDatabase($paypal_payment_details, $payment_id);
+            //\Session::put('gift_card_value_id', $id);
+            \Session::flash('success-msg', 'Payment success');
+
+            (new \App\Http\Controllers\CoreModules\Videos\VideoPurchaseModel)->purchaseVideo($user_id, $stage_id, 'purchased');
+            return redirect()->route('view-stage', $stage_id);
+        }
+        \Session::flash('friendly-error-msg', 'Payment failed');
+        return redirect()->route('view-stages');
+    }
+
     public function payWithpaypal($user_id)
     {
 

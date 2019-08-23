@@ -62,6 +62,8 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'onlySuperadmin'    =>  \App\Http\Middleware\IsSuperadmin::class,
         'checkExpiration'    =>  \App\Http\Middleware\CheckExpirationDate::class,
+        'checkStageAccess'    =>  \App\Http\Middleware\CheckStageAccess::class,
+        'checkStagePurchaseAccess'    =>  \App\Http\Middleware\CheckStagePaymentAccess::class,
     ];
 
     /**

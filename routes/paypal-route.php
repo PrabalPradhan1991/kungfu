@@ -12,6 +12,14 @@ Route::post('paypal/{user_id}',
 	['as' => 'paypal',
 	 'uses' => 'PaypalController@payWithpaypal']);
 
+Route::post('buy-stage', 
+	['as' => 'buy-stage',
+	 'uses' => 'PaypalController@postBuyStage']);
+
+Route::get('buy-stage-status/{user_id}', 
+	['as'	=>	'buy-stage-status', 
+	 'uses'	=>	'PaypalController@getBuyStageStatus']);
+
 // route for check status of the payment
 Route::get('status/{user_id}', 
 	['as'	=>	'status', 

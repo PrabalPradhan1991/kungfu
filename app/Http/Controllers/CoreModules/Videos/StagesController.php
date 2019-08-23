@@ -225,4 +225,17 @@ class StagesController extends Controller
     	return redirect()->back();
     }
 
+    public function postRequestAccess($stage_id) {
+        $response = (new RequestModel)->requestAccess(\Auth::user()->id, $stage_id);
+
+        if($response['status']) {
+            session()->flash('success-msg', $response['message']);
+        }
+        else {
+            session()->flash('frienldy-error-msg', $response['message']);
+        }
+
+        return redirect()->back();
+    }
+
 }
