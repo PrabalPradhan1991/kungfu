@@ -28,6 +28,7 @@
         		</div>
         		@endif
         	</div>
+            <p></p>
         	<div class="col-md-4">
         		<table class="table table-striped table-bordered">
         			<tbody>
