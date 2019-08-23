@@ -122,7 +122,7 @@ class PaypalController extends Controller
         Session::forget('paypal_payment_id');
         if (empty(Input::get('PayerID')) || empty(Input::get('token')) || is_null($paypal_payment_details)) {
             \Session::flash('friendly-error-msg', 'Payment failed');
-            return redirect()->route('paywithpaypal', $user_id);
+            return redirect()->to($return_url);
         }
 
         $payment = Payment::get($payment_id, $this->_api_context);

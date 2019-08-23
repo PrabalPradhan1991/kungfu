@@ -18,22 +18,37 @@ class RequestModel extends Model
 
     public function requestAccess($user_id, $stage_id) {
     	$status = ['status' => false, 'message' => ''];
-        $record = self::firstOrNew([
-    		'user_id' => $user_id,
-    		'stage_id'	=>	$stage_id
-    	]);
 
-        if($record->id) {
-            $status['status'] = false;
-            $status['message'] = 'You have already requested access. Please wait for verification';
+        $stage = StageModel::where('id', $stage_id)->first();
+
+        if($stage->ordering == 1) {
+            $record = UserStageModel::firstOrNew([
+                'user_id'   =>  $user_id,
+                'stage_id'  =>  $stage_id
+            ])->save();
+
+            $status['status'] = true;
+            $status['message'] = 'You can now access this stage';
         }
         else {
-            $status['status'] = true;
-            $status['message'] = 'Status successfully requested';
-            $record->save();    
-            \Mail::to(env('MAIL_TO'))
-            ->send(\App\Mail\RequestAccessMail(['user_id' => $user_id, 'stage_id' => $stage_id, 'request_id' => $record->id]));
+            $record = self::firstOrNew([
+                'user_id' => $user_id,
+                'stage_id'  =>  $stage_id
+            ]);
+
+            if($record->id) {
+                $status['status'] = false;
+                $status['message'] = 'You have already requested access. Please wait for verification';
+            }
+            else {
+                $status['status'] = true;
+                $status['message'] = 'Successfully requested';
+                $record->save();    
+                \Mail::to(env('MAIL_TO'))
+                ->send(\App\Mail\RequestAccessMail(['user_id' => $user_id, 'stage_id' => $stage_id, 'request_id' => $record->id]));
+            }    
         }
+        
     	
         return $status;
     }

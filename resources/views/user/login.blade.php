@@ -1,6 +1,10 @@
 
 @include('user.include.header')
-
+<style>
+	body {
+		line-height: 4.228571;
+	}
+</style>
 
 	<div class="container">
 <div class="login-page">
@@ -51,7 +55,7 @@
                                     <a href="{{ route('registration-get') }}"><strong style="color: #fff;">Sign Up !</strong> </a></p>
                                     
                             </div>			
-<center><img src="images/cta-kungfu.png" alt="" class="img-responsive"></center>
+<center><img src="{{ asset('user/images/cta-kungfu.png') }}" alt="Kungfu Registration" class="img-responsive"></center>
 <p class="signup"> Don't have an account?
                                     <a href="{{ route('registration-get') }}"><strong>Sign Up !</strong> </a></p>
 
