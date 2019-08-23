@@ -1,5 +1,11 @@
 @extends('user.main')
 
+<style type="text/css">
+    .chpass td i{float: right; color:red}
+    .chpass video{width:100%; min-width: 400px; height: auto;}
+
+</style>
+
 @section('content')
 <link href="https://vjs.zencdn.net/7.6.0/video-js.css" rel="stylesheet">
  <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
@@ -17,7 +23,7 @@
         		@if($selected_video)
         		<div class="row">
 	        		<div class="col-md-12">
-	        			<video id='my-video' class='video-js' controls preload='auto' data-setup='{}' style="width: 100%; height: 50%">
+	        			<video id='my-video' class='video-js' controls preload='auto' data-setup='{}'>
 						    <source src="{{ route('get-video-from-filename', [$selected_video->video_filename, $video_id]) }}" type='{{ $selected_video->mime }}'>
 						    <p class='vjs-no-js'>
 						      To view this video please enable JavaScript, and consider upgrading to a web browser that
@@ -39,7 +45,7 @@
         				@foreach($videos as $index => $v)
         					<tr>
         						<td>{{ $index + 1 }}</td>
-        						<td><a href="{{ route('view-stage', [$stage_id, $v->id]) }}">{{ $v->title }}</a></td>
+        						<td><a href="{{ route('view-stage', [$stage_id, $v->id]) }}">{{ $v->title }} <i class="fas fa-file-download"></i></a></td>
         					</tr>
         				@endforeach
         				<tr>
@@ -49,7 +55,7 @@
         				@foreach($pdfs as $index => $v)
         					<tr>
         						<td>{{ $index + 1 }}</td>
-        						<td><a href="{{ route('get-asset', ['pdf', $v->pdf_filename]) }}" target="_blank">{{ $v->title }}</a></td>
+        						<td><a href="{{ route('get-asset', ['pdf', $v->pdf_filename]) }}" target="_blank">{{ $v->title }} <i class="fas fa-file-download"></i></a></td>
         					</tr>
         				@endforeach
         			</tbody>
