@@ -1,0 +1,303 @@
+@import url('https://fonts.googleapis.com/css?family=Fugaz+One&display=swap');
+
+/*===========login-page Start ===========*/
+
+p{font-size: 14px; line-height: 20px;}
+
+.header {
+    width: 100%;
+    position: relative;
+    border-bottom: 5px solid #000;
+}
+.header [class*="col-"] {
+    vertical-align: middle;
+}
+.header-right [class*="col"] {
+    font-size: 16px;
+    line-height: 1.2;
+    font-weight: bold;
+}
+.header-right
+.extra-info {
+    padding: 30px 0;
+}
+.extra-info [class*="col-"] {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.header-right i {
+    float: left;
+    width: 42px;
+    height: 42px;
+    line-height: 42px;
+    text-align: center;
+    border: 2px solid #FF0000;
+    border-radius: 50%;
+    margin: 0 10px 0 0;
+}
+.footer {
+    background-color: #000000;
+    color: #ffffff;
+    position:fixed;
+    bottom:0;
+    left: 0;
+    width: 100%;
+
+}
+
+.copyright {
+    padding: 16px 0;
+    text-align: center;
+    font-size: 14px;
+    position: relative;
+    border-top: 1px solid #222;
+}
+.copyright a{color:red;}
+
+@media(max-width: 480px){
+.header .site-branding img {
+    vertical-align: middle;
+    width: 100%;
+    margin: 10px 0;
+}
+.header-right .extra-info {
+    padding:5px 0;
+    margin-left: 10%;
+}
+.extra-info [class*="col-"] {
+	margin-bottom: 10px;
+	}
+
+}
+
+.login-page {margin-top:1%;  }
+.login-page .col-md-7{padding-right: 0;  padding-left: 0;}
+.login-page .col-md-5{padding-right: 0;  padding-left: 0;}
+.login-left {border:1px solid #ccc; padding:5px 8px; border-radius: 0px; }
+.login-left h1{font-size:28px; background:#FF0000; line-height:50px; width: 100%; text-align: center;  margin-top:5px; margin-bottom: 10px; color:#fff; font-family: 'Fugaz One', cursive;}
+.login-left	.form-group{margin-bottom:4px !important;  }
+.login-left input{ background:#f1f1f1; border:0; border-radius:0px; line-height: 40px; padding:20px 10px; color: #222; font-size: 16px; }
+.login-left .tml-label{margin-left: 10px; font-size: 14px;}
+.login-left .tml-button{width: 100px; padding:0px 5px !important;  background:#FF0000 !important; margin-bottom: 10px; color: #fff; border-radius: 20px; line-height:38px;}
+.login-left ul li{font-size: 16px;}
+.login-right{background:#333; padding: 10px 15px; color: #fff; vertical-align: middle; height:392px;}
+.login-right ul{margin: 0;}
+.login-right ul li{font-size: 16px;  list-style: square; padding-bottom: 5px; line-height: 20px;}
+.login-right img{margin-top: 26px;}
+.sign-side {
+	margin-top: 30px;
+    display: block;
+    width: 100%;
+    background: #FF0000;
+    padding: 12px 0 1px;
+    border-radius: 10px;
+}
+
+.col-container {
+  display: table;
+  width: 100%;
+}
+.col {
+
+  display: table-cell;
+  padding: 16px;
+}
+.signup{display:none;}
+
+@media(max-width:480px){
+
+	.login-page .col-md-7{padding-right: 0px;  padding-left: 0px;}
+	.login-page .col-md-5{padding-right: 0px;  padding-left: 0px;}
+	.login-page {margin-bottom:8%;  }
+
+	.login-right{background:none; height:auto; padding: 0 0; color: #000; margin-top: 20px; text-align: center;}
+.login-right ul{margin: 0; display: none;}
+.login-right ul li{font-size: 16px;  list-style: square; padding-bottom: 5px; line-height: 20px;}
+.login-right img{margin-top: 26px; display: none;}
+.sign-side {display: none;}
+.signup{display:block;  margin-top: 20px;}
+
+}
+
+/*===========login-page End ===========*/
+
+/*===========forgot-password-page start ===========*/
+
+.forgot-password .form-horizontal .control-label {
+    padding-top: 7px;
+    margin-bottom: 0;
+    text-align: left;
+}
+.forgot-password .form-horizontal input{width: 100%; padding: 7px 10px; margin-top: 10px;}
+.forgot-password .btn{ background: red; width: 100%; color:#fff; font-size: 16px; font-weight: bold; line-height: 24px; }
+
+.forgot-password h3{color:red; margin-top: 5px;}
+
+@media(max-width: 480px){
+.forgot-password{ margin-top: 10px;
+}
+.forgot-password img{width: 30%}
+
+}
+
+/*===========forgot-password-page End ===========*/
+
+/*===========register-page start ===========*/
+.register { padding:0  20px; border:2px solid #efefef; margin-bottom: 100px;  }
+
+.register h3, .register h4{color: red;}
+.register h1{
+    color: red;
+    border-bottom: 3px solid;
+    display: inline;
+    padding-bottom: 5px;
+line-height:60px;
+}
+.register ul li {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    list-style: none;
+}
+.register ul li i {color:red;}
+.register .form-check.form-check-inline {
+
+    display: initial;
+    margin-right: 20px;
+
+}
+.register .form-control {border-radius: 0; height: 40px;}
+
+.register .btn-default {
+    color: #fff;
+    background-color:red;
+    border-color:red;
+    width: 150px;
+    height: 40px;
+    font-size: 18px;
+}
+
+.btn-default {
+    color: #fff;
+    background-color:red;
+    border-color:red;
+    width: 150px;
+    height: 40px;
+    font-size: 18px;
+}
+
+
+
+/*===========register-password-page End ===========*/
+
+
+.details{margin-top: 18px; }
+.details p{font-size: 16px; line-height: 36px; border-bottom: 1px solid #efefef;}
+.details p i{margin-right: 20px; font-size: 20px;}
+.grading-system{padding: 6px 10px; vertical-align: middle; border:1px solid #e1e1e1;}
+	.details .btn-default {
+    color: #fff;
+    background-color:red;
+    border-color:red;
+    width: 80px;
+    font-size: 14px;
+    line-height: 14px;
+}
+
+@media(max-width: 480px){
+	.details{margin-bottom: 100px;}
+
+}
+
+
+/*===========change-password-page start ===========*/
+
+
+	.chpass{margin-top:14px; border:1px solid #ccc; padding: 16px; }
+
+.chpass h1{margin:0; color:red;
+display: inline-block;
+border-bottom: 3px solid;
+padding-bottom: 10px;
+margin-bottom: 20px;
+font-size: 24px;
+}
+.chpass ul li{margin-bottom: 10px; list-style: none;}
+.chpass ul li i{ width: 6%;  font-size: 18px;}
+.chpass ul li span {
+    display: inline-block;
+    vertical-align: middle;
+    width: 80%;
+}
+
+@media(max-width: 480px){
+	.chpass{margin-bottom:90px;}
+
+}
+
+/*===========change-password-page End ===========*/
+
+/*===========change-details-page start===========*/
+
+.changedetails {margin: 1% 0; border:1px solid #ccc; padding: 10px;}	
+.changedetails h1{margin:0; color:red; font-size: 28px;
+display: inline-block;
+border-bottom: 3px solid;
+padding-bottom: 10px;
+margin-bottom: 20px;}
+.changedetails .form-control {
+    font-size: 14px;
+    border-radius: 0;
+    border: 1px solid #ccc;
+}
+.changedetails .form-group label { text-transform: uppercase; font-size: 12px;}
+.changedetails .col-sm-8 {
+    width: 64%;
+    border: 1px dotted #ccc;
+    margin-right: 20px;
+}
+
+.changedetails .img-block, .btn-upload {
+    border: 2px solid #aaa;
+    color: gray;
+    background-color: white;
+    height: 200px !important;
+    width: 200px !important;
+    border-radius: 8px !important;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+.a_submit_button {
+    display: none;
+}
+.btn-image {
+    color: #222 !important;
+    font-size: 25px;
+}
+
+.progress {
+height: 0;
+  margin-bottom:0px;
+}
+.profile p{margin-top:10px; font-weight: bold;}
+
+@media(max-width:480px){
+.changedetails{margin-bottom:80px;}
+.changedetails .col-sm-8 {
+    width: 100%;
+    border: 1px dotted #ccc;
+    margin-right: 20px;
+}
+
+}
+
+/*===========change-details-page End ===========*/
+
+
+
+
+
+
+

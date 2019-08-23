@@ -1,0 +1,8 @@
+.nav-item-dashboard{padding: 0px !important;}
+.dropdown-item.active, .dropdown-item:active{ background: #0E4F89 !important;}
+.page-item.active .page-link{ background: #0E4F89 !important; border:1px solid #0E4F89 !important;}
+.card-widget-block{margin:25px 15px !important;}
+.card-widget-block .card{cursor:pointer; background: #7d879221 !important;-webkit-box-shadow:2px 6px 15px 0 rgba(69, 65, 78, 0.48); box-shadow: 2px 6px 15px 0 rgba(69, 65, 78, 0.48); transition: all 0.4s;}
+.card-widget-block .card:hover{opacity:0.6;}
+.card-widget-block .card a{text-decoration: none;}
+.sierra-row{margin-right: 15px !important; margin-left: 15px !important;}
