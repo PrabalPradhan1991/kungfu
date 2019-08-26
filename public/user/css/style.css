@@ -322,6 +322,10 @@ height: 0;
 .page-not-found p{font-size: 18px; line-height:26px;}
 .page-not-found i{font-size: 78px; }
 
+.grading h2{margin-top:0; color: red;}
+.grading i{color:#000;}
+.grading p{font-size: 14px; font-weight: bold;}
+
 
 
 
