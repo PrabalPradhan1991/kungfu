@@ -1,3 +1,6 @@
+@extends('user.main')
+
+@section('content')
 <div class="col-md-9">
     <div class="chpass">
 
@@ -56,3 +59,4 @@
 
     </div>
 </div>
+@stop

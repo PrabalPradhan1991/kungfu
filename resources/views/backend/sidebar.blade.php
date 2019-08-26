@@ -60,7 +60,7 @@
 										<a href="{{ URL::route('admin-stage-requests-get')}}">
 											<i class="far fa-file"></i>						
 											<?php $request_count = \App\Http\Controllers\CoreModules\Videos\RequestModel::count() ?>
-											<p>Requests @if($request_count) ({{ $request_count }}) @endif</p>
+											<p>Stage Requests @if($request_count) ({{ $request_count }}) @endif</p>
 											<?php unset($request_count); ?>
 										</a>
 									</li>
