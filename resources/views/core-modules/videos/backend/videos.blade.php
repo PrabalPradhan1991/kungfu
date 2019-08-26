@@ -20,7 +20,7 @@
 			</form>
 			
 				<div class="card-body">
-					<div class="col-sm-10">
+					<div class="col-sm-12">
 						@if(!empty($videos))
 							@foreach($videos as $v)
 								<form method="post" id="admin-videos-delete-post-{{ $v->id }}" action="{{ route('admin-videos-delete-post', $v->id) }}" class="prabal-confirm">
