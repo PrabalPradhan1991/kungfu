@@ -46,9 +46,9 @@
 <div class="col-md-5">
 <div class="login-right">
 		<ul>
-			<li>Get access to your listings</li>
-			<li>Edit your post &amp; user profile</li>
-			<li>Detailed Statistics ( Views , Discussion , Notifications )</li>
+			<li>Get access to exclusive videos & training materials</li>
+			<li>Access the grading system</li>
+			<li>Edit your details and password</li>
 		</ul>
 		<div class="login-box-btm text-center sign-side">
                                 <p class="login-p-desc"> Don't have an account? <br>

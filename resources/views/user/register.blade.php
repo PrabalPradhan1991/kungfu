@@ -206,10 +206,10 @@
 	  			<div class="reagister-image-header ">	
 	         		<h3>Registration allows you to:</h3>
 	         		<ul>
-	         			<li><i class="fa fa-check"></i> post free ads &amp; jobs</li>
-	         			<li><i class="fa fa-check"></i> interact with other users and employers</li>
-	         			<li><i class="fa fa-check"></i> control &amp; edit your content</li>
-	         			<li><i class="fa fa-check"></i> get notifications on all account actions</li>
+	         			<li><i class="fa fa-check"></i> Access the membership area</li>
+	         			<li><i class="fa fa-check"></i> Access exclusive content</li>
+	         			<li><i class="fa fa-check"></i> Train with the grading system</li>
+	         			<li><i class="fa fa-check"></i> Edit your personal infos</li>
 	         		</ul>
 	         	</div>
 	         	<div class="row justify-content-sm-center">	
