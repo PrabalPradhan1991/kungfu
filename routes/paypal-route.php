@@ -14,9 +14,9 @@ Route::post('paypal/{user_id}',
 
 Route::post('buy-stage', 
 	['as' => 'buy-stage',
-	 'uses' => 'PaypalController@postBuyStage']);
+	 'uses' => 'PaypalController@postBuyStage'])->middleware(['checkStagePaymentStatus']);
 
-Route::get('buy-stage-status/{user_id}', 
+Route::get('buy-stage-status', 
 	['as'	=>	'buy-stage-status', 
 	 'uses'	=>	'PaypalController@getBuyStageStatus']);
 

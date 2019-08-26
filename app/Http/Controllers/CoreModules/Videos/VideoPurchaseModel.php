@@ -17,22 +17,32 @@ class VideoPurchaseModel extends Model
     ];
 
     public function purchaseVideo($user_id, $stage_id, $status) {
-    	$record = self::firstOrNew([
+    	$response = [];
+        $record = self::firstOrNew([
     		'user_id'	=>	$user_id,
     		'stage_id'	=>	$stage_id
     	]);
 
     	$record->purchase_status = $status;
-    	$record->save();
+        $record->save();
 
-    	if($status == 'review') {
-    		/* TODO
-    			//send mail
-    		*/
-    	}
-    	else {
 
-    	}
+
+        if($status == 'review') {
+            /* TODO
+                //send mail
+            */
+            \Mail::to(env('MAIL_TO'))
+                ->send(new \App\Mail\PaymentRequestMail(['user_id' => $user_id, 'stage_id' => $stage_id, 'request_id' => $record->id]));
+
+            $response = ['status' => true, 'message' => 'Your payment is under review. We will get back to you soon!'];
+        }
+        else {
+            $response = ['status' => true, 'message' => 'Your payment has been verified!'];
+        }
+        
+    	
+        return $response;
     	
     }
 }

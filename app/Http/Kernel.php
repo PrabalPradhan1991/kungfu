@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
         'checkExpiration'    =>  \App\Http\Middleware\CheckExpirationDate::class,
         'checkStageAccess'    =>  \App\Http\Middleware\CheckStageAccess::class,
         'checkStagePurchaseAccess'    =>  \App\Http\Middleware\CheckStagePaymentAccess::class,
+        'checkStagePaymentStatus' => \App\Http\Middleware\CheckStagePaymentStatus::class
     ];
 
     /**

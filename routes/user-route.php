@@ -30,4 +30,4 @@ Route::get('view-stages',
 Route::get('view-stage/{stage_id}/{video_id?}',
 ['as'	=>	'view-stage',
  'uses'	=>	'UserController@getViewStage',
- 'middleware'	=>	'auth']);
+ 'middleware'	=>	'auth'])->middleware(['checkStageAccess']);

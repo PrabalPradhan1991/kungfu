@@ -25,7 +25,7 @@ class PaypalController extends Controller
 {
 	private $item, $itemList, $amount, $transaction;
 	private $currency = 'AUD';
-    private $membership_fee = 100;
+    private $membership_fee = 125;
     private $membership_period = 365;
 	public function __construct()
     {
@@ -63,13 +63,21 @@ class PaypalController extends Controller
 
         $user_id = request()->get('user_id');
         $stage_id = request()->get('stage_id');
-        $this->amount = request()->get('amount');
+        $record = \App\Http\Controllers\CoreModules\Videos\StageModel::where('id', $stage_id)->firstOrFail();
         $return_url = request()->get('return_url');
 
         if($input['payment_method'] == 'By Bank') {
-            (new \App\Http\Controllers\CoreModules\Videos\VideoPurchaseModel)->purchaseVideo($user_id, $stage_id, 'review');
-            session()->flash('success-msg', 'Once we verify payment. You will be able to access this page');
-            return redirect()->route('view-stages');
+
+            $response = (new \App\Http\Controllers\CoreModules\Videos\VideoPurchaseModel)->purchaseVideo($user_id, $stage_id, 'review');
+            if($response['status']) {
+                session()->flash('success-msg', $response['message']);    
+            } else {
+                session()->flash('friendly-error-msg', $response['message']);
+            }
+            
+            return redirect()->route('view-stage', $stage_id);
+        } else {
+            //$response = (new \App\Http\Controllers\CoreModules\Videos\VideoPurchaseModel)->purchaseVideo($user_id, $stage_id, 'review');
         }
 
         $payer = new Payer();
@@ -78,6 +86,11 @@ class PaypalController extends Controller
         $redirect_urls = new RedirectUrls();
         $redirect_urls->setReturnUrl(URL::route('buy-stage-status')) /** Specify return URL **/
                       ->setCancelUrl(URL::route('buy-stage-status'));
+
+        $input['amount'] = $record->price;
+        $input['description'] = isset($input['description']) ? $input['description'] : $record->stage_name;
+        \Session::put('paypal-payment-details', $input);
+        $this->setTransaction($input);
         
         $payment = new Payment();
         $payment->setIntent('Sale')
@@ -90,6 +103,8 @@ class PaypalController extends Controller
             $payment->create($this->_api_context);
         } catch (\Exception $ex) {
             //if (\Config::get('app.debug')) {
+            echo $ex->getMessage();
+            die();
             \Session::flash('friendly-error-msg', 'Connection timeout');
             //\Session::flash('friendly-error-msg', 'Some error occur, sorry for inconvenient');
            return Redirect::to($return_url);
@@ -122,7 +137,7 @@ class PaypalController extends Controller
         Session::forget('paypal_payment_id');
         if (empty(Input::get('PayerID')) || empty(Input::get('token')) || is_null($paypal_payment_details)) {
             \Session::flash('friendly-error-msg', 'Payment failed');
-            return redirect()->to($return_url);
+            return redirect()->to($paypal_payment_details['return_url']);
         }
 
         $payment = Payment::get($payment_id, $this->_api_context);
@@ -137,8 +152,8 @@ class PaypalController extends Controller
             //\Session::put('gift_card_value_id', $id);
             \Session::flash('success-msg', 'Payment success');
 
-            (new \App\Http\Controllers\CoreModules\Videos\VideoPurchaseModel)->purchaseVideo($user_id, $stage_id, 'purchased');
-            return redirect()->route('view-stage', $stage_id);
+            $response = (new \App\Http\Controllers\CoreModules\Videos\VideoPurchaseModel)->purchaseVideo($paypal_payment_details['user_id'], $paypal_payment_details['stage_id'], 'purchased');
+            return redirect()->route('view-stage', $paypal_payment_details['stage_id']);
         }
         \Session::flash('friendly-error-msg', 'Payment failed');
         return redirect()->route('view-stages');
@@ -156,6 +171,8 @@ class PaypalController extends Controller
         }
 
     	\Session::put('paypal-payment-details', $input);
+        $input['amount'] = $this->membership_fee;
+        $input['description'] = isset($input['description']) ? $input['description'] : ' Membership Fee';
     	$this->setTransaction($input);
 
 
@@ -179,7 +196,7 @@ class PaypalController extends Controller
 			//if (\Config::get('app.debug')) {
 			\Session::flash('friendly-error-msg', 'Connection timeout');
 	    	//\Session::flash('friendly-error-msg', 'Some error occur, sorry for inconvenient');
-	       return Redirect::route('paywithpaypal');
+	       return Redirect::route('paywithpaypal', $user_id);
 		}
 
 		foreach ($payment->getLinks() as $link) {
@@ -244,10 +261,10 @@ class PaypalController extends Controller
     private function setItem($input)
     {
     	$item = new Item();
-		$item->setName($this->currency.' '.$this->membership_fee.' Membership') /** item name **/
+		$item->setName($this->currency.' '.$input['amount'].$input['description']) /** item name **/
             ->setCurrency($this->currency)
             ->setQuantity(1)
-            ->setPrice($this->membership_fee); /** unit price **/
+            ->setPrice($input['amount']); /** unit price **/
 
 		$this->item = $item;
     }
@@ -279,7 +296,7 @@ class PaypalController extends Controller
     	$this->transaction = new Transaction();
         $this->transaction->setAmount($this->amount)
             ->setItemList($this->itemList)
-            ->setDescription('Purchase of '.$this->currency.' '.$this->amount->total.' Membership');
+            ->setDescription('Purchase of '.$this->currency.' '.$input['amount'].$input['description']);
     }
 
     private function storeInDatabase($input, $payment_id)

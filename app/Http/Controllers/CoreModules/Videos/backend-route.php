@@ -118,4 +118,16 @@ Route::group(['prefix' => 'admin/stages', 'namespace' => '\App\Http\Controllers\
 		'uses'	=>	'StagesController@postRequestAccess',
 		'middleware'	=>	'auth'
 	]);
+
+	//postVideoPaymentRequest($request_id, $status)
+	Route::get('video-payment-request-list',[
+		'as'	=>	'admin-payment-request-list',
+		'uses'	=>	'StagesController@getVideoPaymentRequestList'
+	])->middleware(['onlySuperadmin']);
+
+	Route::post('video-payment-request/{request_id}/{status}', [
+		'as'	=>	'admin-video-payment-request-post',
+		'uses'	=>	'StagesController@postVideoPaymentRequest',
+		'middleware'	=>	'auth'
+	])->middleware(['onlySuperadmin']);
 });

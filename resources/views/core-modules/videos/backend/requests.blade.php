@@ -18,7 +18,7 @@
 							<tr>
 								<th style="width: 10px">Sn</th>
 								<th>User</th>
-								<th>From Stage</th>
+								<th>Email</th>
 								<th>To Stage</th>
 								<th>Description</th>
 								<th style="width: 100px">Actions</th>
@@ -29,7 +29,7 @@
 								<tr>
 									<td>{{ $index + 1 }}</td>
 									<td>{{ $d->name }}</td>
-									<td>{{ $d->from_stage }}</td>
+									<td>{{ $d->email }}</td>
 									<td>{{ $d->to_stage }}</td>
 									<td>{{ $d->description }}</td>
 									<td>

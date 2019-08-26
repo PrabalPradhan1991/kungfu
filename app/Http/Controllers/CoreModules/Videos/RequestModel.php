@@ -28,12 +28,12 @@ class RequestModel extends Model
             ])->save();
 
             $status['status'] = true;
-            $status['message'] = 'You can now access this stage';
+            $status['message'] = 'You can now access '.$stage->stage_name;
         }
         else {
             $record = self::firstOrNew([
                 'user_id' => $user_id,
-                'stage_id'  =>  $stage_id
+                'to_stage_id'  =>  $stage_id
             ]);
 
             if($record->id) {
@@ -43,9 +43,10 @@ class RequestModel extends Model
             else {
                 $status['status'] = true;
                 $status['message'] = 'Successfully requested';
+                $record->description = 'Request for access of '.$stage->stage_name;
                 $record->save();    
                 \Mail::to(env('MAIL_TO'))
-                ->send(\App\Mail\RequestAccessMail(['user_id' => $user_id, 'stage_id' => $stage_id, 'request_id' => $record->id]));
+                ->send(new \App\Mail\RequestAccessMail(['user_id' => $user_id, 'stage_id' => $stage_id, 'request_id' => $record->id]));
             }    
         }
         

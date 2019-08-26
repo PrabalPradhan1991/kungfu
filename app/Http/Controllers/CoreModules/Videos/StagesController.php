@@ -192,13 +192,15 @@ class StagesController extends Controller
     public function getStageRequests() {
     	$stage_table = (new StageModel)->getTable();
     	$user_table = (new \App\User)->getTable();
+        $user_details_table = (new \App\UserDetailsModel)->getTable();
     	$request_table = (new RequestModel)->getTable();
 
     	$data = \DB::table($request_table)
-    				->join($stage_table.' as from_stage', 'from_stage.id', '=', $request_table.'.from_stage_id')
+    				//->join($stage_table.' as from_stage', 'from_stage.id', '=', $request_table.'.from_stage_id')
     				->join($stage_table.' as to_stage', 'to_stage.id', '=', $request_table.'.to_stage_id') 
     				->join($user_table, $user_table.'.id', '=', $request_table.'.user_id')
-    				->select($request_table.'.*', 'name', 'from_stage.stage_name as from_stage', 'to_stage.stage_name as to_stage')
+                    ->join($user_details_table, $user_details_table.'.user_id', '=', $user_table.'.id')
+    				->select($request_table.'.*',  $user_table.'.name', 'to_stage.stage_name as to_stage', 'email', 'phone')
     				->orderBy('id', 'DESC')->get();
 
     	return view($this->view.'requests')
@@ -208,15 +210,27 @@ class StagesController extends Controller
     public function postStageRequests($status, $request_id) {
     	//if accept add to user stage
     	$data = RequestModel::where('id', $request_id)->firstOrFail();
+        $user = HelperController::getUserDetails($data->user_id);
     	if($status == 'approved') {
     		$user_stage_record = UserStageModel::firstOrNew([
-    			'user_id'	=>	$data->user_id
+    			'user_id'	=>	$data->user_id,
+                'stage_id'  =>  $data->to_stage_id
     		]);
 
-    		$user_stage_record->stage_id = $data->to_stage_id;
-    		$user_stage_record->save();
-    		session()->flash('success-msg', 'User successfully promoted!');
+            if($user_stage_record->id) {
+                session()->flash('frienldy-error-msg', 'User already has access to this stage');
+            }
+            else { 
+                $user_stage_record->save();
+                \Mail::to($user->email)
+                    ->send((new \App\Mail\RequestStatusMail(['stage_id' => $data->to_stage_id, 'user_id' => $data->user_id, 'status' => 'approved'])));
+                session()->flash('success-msg', 'User successfully promoted!');
+            }
+    		//$user_stage_record->stage_id = $data->to_stage_id;
+    		
     	} else {
+            \Mail::to($user->email)
+                    ->send((new \App\Mail\RequestStatusMail(['stage_id' => $data->to_stage_id, 'user_id' => $data->user_id, 'status' => 'disapproved'])));
     		session()->flash('success-msg', 'Request disapproved');
     	}
 
@@ -236,6 +250,50 @@ class StagesController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function postVideoPaymentRequest($request_id, $status) {
+        $record = VideoPurchaseModel::where('id', $request_id)->firstOrFail();
+
+        if($record->purchase_status == 'purchased') {
+            session()->flash('friendly-error-msg', 'The stage is already purchased. Status cannot be changed');
+            return redirect()->back();
+        }
+
+        $user = HelperController::getUserDetails($record->user_id);
+
+        if($status == 'approved') {
+            $record->purchase_status = 'purchased';
+            \Mail::to($user->email)
+                ->send((new \App\Mail\StagePurchaseMail(['user_id' => $record->user_id, 'stage_id' => $record->stage_id, 'status' => $status])));
+            $record->save();
+            session()->flash('success-msg', 'The payment successfully approved');
+        } else {
+            session()->flash('success-msg', 'The payment disapproved');
+            \Mail::to($user->email)
+                ->send((new \App\Mail\StagePurchaseMail(['user_id' => $record->user_id, 'stage_id' => $record->stage_id, 'status' => $status])));
+            $record->delete();
+        }
+
+        return redirect()->back();
+    }
+
+    public function getVideoPaymentRequestList() {
+        $stage_table = (new StageModel)->getTable();
+        $user_table = (new \App\User)->getTable();
+        $user_details_table = (new \App\UserDetailsModel)->getTable();
+        $request_table = (new VideoPurchaseModel)->getTable();
+
+        $data = \DB::table($request_table)
+                    ->join($stage_table, $stage_table.'.id', '=', $request_table.'.stage_id') 
+                    ->join($user_table, $user_table.'.id', '=', $request_table.'.user_id')
+                    ->join($user_details_table, $user_details_table.'.user_id', '=', $user_table.'.id')
+                    ->select($request_table.'.*', $user_table.'.name', 'stage_name', 'email', 'phone')
+                    ->where('purchase_status', 'review')
+                    ->orderBy('id', 'DESC')->get();
+        
+        return view($this->view.'video-payment-request-list')
+                ->with('data', $data);
     }
 
 }

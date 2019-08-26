@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class CheckStagePayment
+class CheckStagePaymentAccess
 {
     /**
      * Handle an incoming request.

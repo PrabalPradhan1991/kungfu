@@ -37,7 +37,7 @@
 
 	<ul>
 		<li><a href="{{ route('home') }}"><i class="fa fa-home"></i> Home</a></li>
-		<li><a href="#"><i class="fa fa-align-justify"></i> Grades</a></li>
+		<li><a href="{{ route('view-stages') }}"><i class="fa fa-align-justify"></i> Grades</a></li>
 		<li><a href="{{ route('change-my-password-get') }}"><i class="fa fa-key"></i> Change Password</a></li>
 		<li> <a href="{{ route('change-my-details-get') }}"><i class="fa fa-edit"></i> Change Details</a></li>
 		<li> <a href="{{ route('paywithpaypal', \Auth::user()->id) }}"><i class="fa fa-edit"></i> Renew</a></li>

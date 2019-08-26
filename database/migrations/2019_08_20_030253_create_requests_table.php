@@ -18,9 +18,9 @@ class CreateRequestsTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('to_stage_id');
-            $table->unsignedBigInteger('from_stage_id');
+            //$table->unsignedBigInteger('from_stage_id');
             $table->string('description', 255);
-            $table->foreign('from_stage_id')->references('id')->on('core_stages');
+            //$table->foreign('from_stage_id')->references('id')->on('core_stages');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('to_stage_id')->references('id')->on('core_stages');
         });
@@ -35,7 +35,7 @@ class CreateRequestsTable extends Migration
     {
         Schema::table('core_requests', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
-            $table->dropForeign(['stage_id']);
+            $table->dropForeign(['to_stage_id']);
         });
         Schema::dropIfExists('core_requests');
     }

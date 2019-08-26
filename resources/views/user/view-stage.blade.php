@@ -30,23 +30,34 @@
         		<p>
         			{!! nl2br($stage->stage_description) !!}
         		</p>
-        		@if($selected_video)
-        		<div class="row">
-	        		<div class="col-md-12 ">               
-	        			<video id='my-video' class='video-js ' controls preload='auto' data-setup='{}'>
-						    <source src="{{ route('get-video-from-filename', [$selected_video->video_filename, $video_id]) }}" type='{{ $selected_video->mime }}'>
-						    <p class='vjs-no-js'>
-						      To view this video please enable JavaScript, and consider upgrading to a web browser that
-						      <a href='https://videojs.com/html5-video-support/' target='_blank'>supports HTML5 video</a>
-						    </p>
-						</video>
-                        <button type="button" class="btn btn-default"><i class="fas fa-shopping-basket"></i> Buy Now</button>
-	        		</div>
-
-        		</div>
-        		@endif
+                <?php $status = (new \App\Http\Middleware\CheckStagePaymentStatus)->check(\Auth::user()->id, $stage->id, 'By Bank'); ?>
+                @if(!$status['status'] && $status['purchase_status'] == 'purchased')
+            		@if($selected_video)
+            		<div class="row">
+    	        		<div class="col-md-12 ">               
+    	        			<video id='my-video' class='video-js ' controls preload='auto' data-setup='{}'>
+    						    <source src="{{ route('get-video-from-filename', [$selected_video->video_filename, $video_id]) }}" type='{{ $selected_video->mime }}'>
+    						    <p class='vjs-no-js'>
+    						      To view this video please enable JavaScript, and consider upgrading to a web browser that
+    						      <a href='https://videojs.com/html5-video-support/' target='_blank'>supports HTML5 video</a>
+    						    </p>
+    						</video>
+    	        		</div>
+            		</div>
+            		@endif
+                @elseif($status['purchase_status'] == 'review')
+                    <p>Your payment is under review</p>
+                @else
+                    <form method="post" action="{{ route('buy-stage') }}">
+                        <button type="submit" class="btn btn-default" name="payment_method" value="By Bank"><i class="fas fa-shopping-basket"></i> By Bank</button>
+                        <button type="submit" class="btn btn-default" name="payment_method" value="By Paypal"><i class="fas fa-shopping-basket"></i> By Paypal</button>
+                        {{ csrf_field() }}
+                        <input type="hidden" name="user_id" value="{{ \Auth::user()->id }}">
+                        <input type="hidden" name="stage_id" value="{{ $stage->id }}">
+                        <input type="hidden" name="return_url" value="{{ url()->current() }}">
+                    </form>
+                @endif
         	</div>
-            <p></p>
         	<div class="col-md-4">
         		<table class="table table-striped table-bordered">
         			<tbody>

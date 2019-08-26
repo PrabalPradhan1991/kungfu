@@ -12,11 +12,11 @@
 						</a>
 					</div>	--}}
 			</div>
-			{{-- <form method="post" action="{{ route('admin-stages-delete-multiple-post') }}" class="prabal-confirm" id="prabal-delete-form">
+			<form method="post" action="{{ route('admin-stages-delete-multiple-post') }}" class="prabal-confirm" id="prabal-delete-form">
 				{{ csrf_field() }}
 				<input type="submit" class="prabal-checkbox-submit btn btn-danger" related-id="add-row" related-form="prabal-delete-form" value="Delete">
 				<div class="place-for-id-checkbox"></div>
-			</form> --}}
+			</form>
 			<div class="card-body">
 				@if(!empty($data))
 				<div class="table-responsive">
@@ -24,28 +24,37 @@
 						<thead>
 							<tr>
 								<th style="width: 10px">Sn</th>
-								<th>Title</th>
-								<th>Ordering</th>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Phone</th>
+								<th>Stage</th>
+								<th>Created At</th>
 								<th style="width: 100px">Actions</th>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach($data as $index => $d)
 								<tr>
-									<td>{{-- <input type="checkbox" name="rid[]" value="{{ $d->id }}" class="id-checkbox"> --}}{{ $index + 1 }}</td>
+									<td>{{ $index + 1 }}</td>
+									<td>{{ $d->name }}</td>
+									<td>{{ $d->email }}</td>
+									<td>{{ $d->phone }}</td>
 									<td>{{ $d->stage_name }}</td>
-									<td>{{ $d->ordering }}</td>
+									<td>{{ $d->created_at }}</td>
 									<td>
 										<div class="form-button-action">
-											{{-- <form method="post" action="{{ route('admin-stages-delete-post', $d->id) }}" class="prabal-confirm">
+											<form method="post" action="{{ route('admin-video-payment-request-post', [$d->id, 'approved']) }}" class="prabal-confirm">
 												{{ csrf_field() }}
-												<button type="submit" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
+												<button type="submit" data-toggle="tooltip" title="Approve" class="btn btn-link btn-danger" data-original-title="Approve">
+												<i class="fa fa-check"></i>
+												</button>
+											</form>
+											<form method="post" action="{{ route('admin-video-payment-request-post', [$d->id, 'disapproved']) }}" class="prabal-confirm">
+												{{ csrf_field() }}
+												<button type="submit" data-toggle="tooltip" title="Disapprove" class="btn btn-link btn-danger" data-original-title="Disapprove">
 												<i class="fa fa-times"></i>
-											</button>
-											</form> --}}
-											<a href="{{ route('admin-stages-edit-get', $d->id) }}" data-toggle="tooltip" title="Edit Stage" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Stage"><i class="fa fa-edit"></i></a>
-											<a href="{{ route('admin-stages-add-videos-get', $d->id) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Add Videos"><i class="fa fa-edit"></i></a>
-											<a href="{{ route('admin-stages-add-pdfs-get', $d->id) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Add PDFs"><i class="fa fa-edit"></i></a>
+												</button>
+											</form>
 										</div>			
 									</td>
 								</tr>

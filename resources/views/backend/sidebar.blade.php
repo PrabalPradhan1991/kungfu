@@ -72,6 +72,14 @@
 											<?php unset($request_count); ?>
 										</a>
 									</li>
+									<li class="nav-item nav-item-dashboard">
+										<a href="{{ URL::route('admin-payment-request-list')}}">
+											<i class="far fa-file"></i>						
+											<?php $request_count = \App\Http\Controllers\CoreModules\Videos\VideoPurchaseModel::where('purchase_status', 'review')->count() ?>
+											<p>Purchase Request @if($request_count) ({{ $request_count }}) @endif</p>
+											<?php unset($request_count); ?>
+										</a>
+									</li>
 								</ul>
 							</div>
 						</li>
