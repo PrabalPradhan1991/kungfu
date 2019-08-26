@@ -12,7 +12,7 @@
 <div class="col-md-9">
     <div class="chpass">
         <div class="row">
-        	@foreach($stages as $s)
+        	@foreach($stages as $index => $s)
         	<?php $check = (new \App\Http\Middleware\CheckStageAccess)->check(\Auth::user()->id, $s->id); ?>
         	<div class="col-md-4">
         		<div class="stages">
@@ -21,7 +21,7 @@
 						<center>
 							@if(\App\Http\Controllers\CoreModules\Videos\RequestModel::where('to_stage_id', $s->id)->where('user_id', \Auth::user()->id)->first())
 								<p>Request Pending</p>
-							@elseif($check == false)
+							@elseif($check == false && $index == 0)
 								<button type="submit" class="btn btn-default"><i class="fas fa-shopping-basket"></i> Request Access</button>
 							@elseif($check)
 							@endif

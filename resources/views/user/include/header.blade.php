@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+	<title>Tradiotional Shaolin Kung Fu</title>
 <link rel="stylesheet" type="text/css" href="{{ asset('user/css/bootstrap.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('user/fontawesome/css/all.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('user/css/style.css') }}">

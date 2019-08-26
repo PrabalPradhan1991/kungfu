@@ -25,7 +25,7 @@ class PaypalController extends Controller
 {
 	private $item, $itemList, $amount, $transaction;
 	private $currency = 'AUD';
-    private $membership_fee = 125;
+    private $membership_fee = 100;
     private $membership_period = 365;
 	public function __construct()
     {

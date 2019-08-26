@@ -15,4 +15,12 @@ class StageModel extends Model
     	//'display_text' => ['required'],
         'ordering'  =>  ['integer', 'min:0']
     ];
+
+    public function getNextStage($stage_id) {
+    	$current_stage = self::where('id', $stage_id)->firstOrFail();
+
+    	$next_stage = self::where('ordering', '>', $current_stage->ordering)->orderBy('ordering', 'ASC')->first();
+
+    	return $next_stage;
+    }
 }
