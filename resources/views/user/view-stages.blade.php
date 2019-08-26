@@ -11,7 +11,6 @@
 @section('content')
 <div class="col-md-9">
     <div class="chpass">
-
         <div class="row">
         	@foreach($stages as $s)
         	<?php $check = (new \App\Http\Middleware\CheckStageAccess)->check(\Auth::user()->id, $s->id); ?>
@@ -36,3 +35,4 @@
     </div>
 </div>
 @stop
+

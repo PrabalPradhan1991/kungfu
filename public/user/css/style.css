@@ -8,6 +8,7 @@ p{font-size: 14px; line-height: 20px;}
     width: 100%;
     position: relative;
     border-bottom: 5px solid #000;
+    padding-top: 10px;
 }
 .header [class*="col-"] {
     vertical-align: middle;
@@ -70,6 +71,8 @@ p{font-size: 14px; line-height: 20px;}
 	}
 
 }
+.btn-login{background:#0074CE; color: #fff !important; font-size: 14px; font-weight: bold;}
+.btn-login1{background:#EB5561; color: #fff !important; font-size: 14px; font-weight: bold;}
 
 .login-page {margin-top:1%;  }
 .login-page .col-md-7{padding-right: 0;  padding-left: 0;}
