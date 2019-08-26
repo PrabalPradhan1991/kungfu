@@ -40,7 +40,7 @@
 		<li><a href="{{ route('view-stages') }}"><i class="fa fa-align-justify"></i> Grades</a></li>
 		<li><a href="{{ route('change-my-password-get') }}"><i class="fa fa-key"></i> Change Password</a></li>
 		<li> <a href="{{ route('change-my-details-get') }}"><i class="fa fa-edit"></i> Change Details</a></li>
-		<li> <a href="{{ route('paywithpaypal', \Auth::user()->id) }}"><i class="fa fa-edit"></i> Renew</a></li>
+		<li> <a href="{{ route('paywithpaypal', \Auth::user()->id) }}"><i class="fas fa-hourglass-end"></i> Renew</a></li>
 		
 			<form method="post" action="{{ route('logout') }}">
 				{{ csrf_field() }}

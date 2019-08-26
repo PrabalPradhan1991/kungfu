@@ -298,6 +298,11 @@ height: 0;
 
 /*===========change-details-page End ===========*/
 
+.renew{text-align: center; border:1px solid #ccc; padding-bottom:40px; margin-top:50px;}
+.renew h1{text-transform: uppercase; color: #fff; font-size:26px; line-height: 52px; margin-top: 0; margin-bottom: 30px;  background: red; border-bottom: 2px solid #900; }
+.renew .btn-login, .renew .btn-login1{width: 40%; line-height: 30px; margin:30px 10px; font-size: 16px;}
+
+
 
 
 
