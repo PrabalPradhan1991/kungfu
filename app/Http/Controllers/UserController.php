@@ -102,4 +102,20 @@ class UserController extends Controller {
 				->with('video_id', $video_id)
 				->with('stage_id', $stage_id);
 	}
+
+	public function getUserListView() {
+		$user_table = (new \App\User)->getTable();
+		$user_details_table = (new \App\UserDetailsModel)->getTable();
+		$payment_details_table = (new \App\Http\Controllers\CoreModules\Subscription\PaymentDetailsModel)->getTable();
+
+		$data = \DB::table($user_table)
+					->join($user_details_table, $user_details_table.'.user_id', '=', $user_table.'.id')
+					->leftJoin($payment_details_table, $payment_details_table.'.user_id', '=', $user_table.'.id')
+					->select($user_table.'.name', 'email', $user_details_table.'.*', $payment_details_table.'.expiration_date')
+					->orderBy('user_id', 'DESC')
+					->get();
+
+		return view('user.list')
+				->with('data', $data);
+	}
 }

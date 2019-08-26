@@ -34,7 +34,7 @@
 						<div class="col-md-10 col-xs-12">
 							<h4>Get access to Grading System</h4>
 						</div>
-						<div class="col-md-2 col-xs-4"><center><button type="btn" class="btn btn-default">Buy Now</button></center></div>
+						<div class="col-md-2 col-xs-4"><center><a href="{{ route('view-stages') }}"><button type="btn" class="btn btn-default">Buy Now</button></a></center></div>
 					</div>
 				</div>
 			</div>
