@@ -315,6 +315,13 @@ height: 0;
 .yme i{font-size: 58px; margin-bottom: 30px; color: red;}
 
 
+.page-not-found{text-align: center; border:1px solid #ccc; padding:40px; margin-top:50px; border-radius:5px;}
+.page-not-found h1{font-size: 48px; margin-bottom: 30px; color:red}
+.page-not-found h2{font-size: 28px; color:#0093D1;}
+.page-not-found p{font-size: 18px; line-height:26px;}
+.page-not-found i{font-size: 78px; }
+
+
 
 
 
