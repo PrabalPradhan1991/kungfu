@@ -4,11 +4,16 @@
 	<form method="post" action="{{ route('paypal', $user_id) }}">
 		<div class="row">
 			<div class="col-md-12">
-				<div class="form-group">
-					
-				</div>
-			{{ csrf_field() }}
-			<input type="submit" class="btn btn-success btn-flat" value="By Paypal" name="payment_method">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="paypal">
+						<i class="fas fa-link"></i>
+
+						<p>You would be redirected to paypal for the payment of the subscription fees. upon successful payment you will be logged in to the membership area.</p>
+						{{ csrf_field() }}
+						<input type="submit" class="btn btn-login btn-flat" value="By Paypal" name="payment_method">
+					</div>
+				<div class="col-md-3"></div>		
 		</div>
 	</form>
 
