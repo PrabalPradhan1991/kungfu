@@ -32,13 +32,19 @@
 jahungchi@bigpond.com</div>
 <div class="col-md-3 col-xs-12">
 	@if(\Auth::check())
-		<form method="post" action="{{ route('logout') }}">
-			<input type="submit" class="btn btn-flat btn-alert" value="Logout">
-			{{ csrf_field() }}
-		</form>
-		<a href="{{ route('home') }}" class="btn btn-info btn-flat">My Account</a>
+		<div class="row">
+			<div class="col-md-6 col-xs-3">
+				<form method="post" action="{{ route('logout') }}">
+					<input type="submit" class="btn btn-login btn-alert" value="Logout">
+					{{ csrf_field() }}
+				</form>
+			</div>
+			<div class="col-md-6 col-xs-6">
+				<a href="{{ route('home') }}" class="btn btn-login1 btn-flat">My Account</a>
+			</div>
+
+		</div>	
 	@else
-	
 		<a href="{{ route('login') }}" class="btn btn-login btn-flat">Login</a>
 		<a href="{{ route('registration-get') }}" class="btn btn-login1 btn-flat">Register</a>
 	@endif
