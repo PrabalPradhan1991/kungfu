@@ -58,6 +58,8 @@
                     </form>
                 @endif
         	</div>
+
+            @if(!$status['status'] && $status['purchase_status'] == 'purchased')
         	<div class="col-md-4">
         		<table class="table table-striped table-bordered">
         			<tbody>
@@ -84,10 +86,27 @@
         			</tbody>
         		</table>
         	</div>
+            @endif
         	
         </div>
 
     </div>
+    
+        <?php $next_stage = (new \App\Http\Controllers\CoreModules\Videos\StageModel)->getNextStage($stage->id); ?>
+        @if(!is_null($next_stage))
+            <form method="post" action="{{ route('reqeust-access-stage-post', $next_stage->id) }}">
+                <center>
+                    <?php $check = (new \App\Http\Middleware\CheckStageAccess)->check(\Auth::user()->id, $next_stage->id); ?>
+                    @if(\App\Http\Controllers\CoreModules\Videos\RequestModel::where('to_stage_id', $next_stage->id)->where('user_id', \Auth::user()->id)->first())
+                        <p>Request Pending</p>
+                    @elseif($check == false)
+                        <button type="submit" class="btn btn-default"><i class="fas fa-shopping-basket"></i> Request Access To {{ $next_stage->stage_name }}</button>
+                    @elseif($check)
+                    @endif
+                </center>
+                {{ csrf_field() }}
+            </form>
+        @endif
 </div>
 @stop
 @section('custom-js')
