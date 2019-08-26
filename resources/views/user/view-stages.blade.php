@@ -30,7 +30,7 @@
 			</div>
 			<div class="col-md-3">
 				<div class="stages">  		
-					<a href="http://localhost:8000/view-stage/2" class="form-control stage-disabled"><i class="fas fa-hand-point-right"></i> Stage 2</a>
+					<a href="http://localhost:8000/view-stage/2" class="form-control stage-disabled" ><i class="fas fa-hand-point-right"></i> Stage 2</a>
 					<form>
 					<center><button type="button" class="btn btn-default"><i class="fas fa-shopping-basket"></i> Buy Now</button></center>
 					</form>
@@ -72,7 +72,7 @@
 				<div class="stages">  		
 					<a href="http://localhost:8000/view-stage/7" class="form-control stage-disabled"><i class="fas fa-hand-point-right"></i> Stage 7</a>
 					<form>
-					<center><button type="button" class="btn btn-default"><i class="fas fa-shopping-basket"></i> Buy Now</button></center>
+					<center><button type="button" class="btn btn-default"><i class="fas fa-shopping-basket"></i> Buy Now</button></center>" 
 					</form>
 				</div>
 			</div>
@@ -80,3 +80,4 @@
     </div>
 </div>
 @stop
+

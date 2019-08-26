@@ -22,13 +22,15 @@
 																		</div>
 				</div>
 																	<div class="col-md-7  col-xs-12 header-right">
+
+																		
 					<aside id="text-14" class="widget widget_text">			<div class="textwidget"><div class="row extra-info">
-<div class="col-md-1 hidden-xs"></div>
+
 <div class="col-md-4 col-xs-12"><i class="fa fa-phone"></i>CALL US FREE<br>
 0418 664 923</div>
 <div class="col-md-5 col-xs-12"><i class="fa fa-envelope"></i>EMAIL US<br>
 jahungchi@bigpond.com</div>
-<div class="col-md-2 col-xs-12">
+<div class="col-md-3 col-xs-12">
 	@if(\Auth::check())
 		<form method="post" action="{{ route('logout') }}">
 			<input type="submit" class="btn btn-flat btn-alert" value="Logout">
@@ -36,8 +38,9 @@ jahungchi@bigpond.com</div>
 		</form>
 		<a href="{{ route('home') }}" class="btn btn-info btn-flat">My Account</a>
 	@else
-		<a href="{{ route('login') }}" class="btn btn-info btn-flat">Loging</a>
-		<a href="{{ route('registration-get') }}" class="btn btn-info btn-flat">Register</a>
+	
+		<a href="{{ route('login') }}" class="btn btn-login btn-flat">Login</a>
+		<a href="{{ route('registration-get') }}" class="btn btn-login1 btn-flat">Register</a>
 	@endif
 </div>
 </div>
