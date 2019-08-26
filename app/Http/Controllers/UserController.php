@@ -111,7 +111,8 @@ class UserController extends Controller {
 		$data = \DB::table($user_table)
 					->join($user_details_table, $user_details_table.'.user_id', '=', $user_table.'.id')
 					->leftJoin($payment_details_table, $payment_details_table.'.user_id', '=', $user_table.'.id')
-					->select($user_table.'.name', 'email', $user_details_table.'.*', $payment_details_table.'.expiration_date')
+					->select($user_table.'.name as username', 'email', $user_details_table.'.*', $payment_details_table.'.expiration_date')
+					->where('group_id', 3)
 					->orderBy('user_id', 'DESC')
 					->get();
 

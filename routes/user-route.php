@@ -31,3 +31,8 @@ Route::get('view-stage/{stage_id}/{video_id?}',
 ['as'	=>	'view-stage',
  'uses'	=>	'UserController@getViewStage',
  'middleware'	=>	'auth'])->middleware(['checkStageAccess']);
+
+Route::get('admin/user-list',
+['as'	=>	'admin-user-list',
+ 'uses'	=>	'UserController@getUserListView',
+ 'middleware'	=>	'auth'])->middleware(['onlySuperadmin']);
