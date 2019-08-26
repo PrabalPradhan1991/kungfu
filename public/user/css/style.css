@@ -298,6 +298,30 @@ height: 0;
 
 /*===========change-details-page End ===========*/
 
+.renew{text-align: center; border:1px solid #ccc; padding-bottom:40px; margin-top:50px;}
+.renew h1{text-transform: uppercase; color: #fff; font-size:26px; line-height: 52px; margin-top: 0; margin-bottom: 30px;  background: red; border-bottom:1px solid #900; }
+.renew .btn-login, .renew .btn-login1{width: 40%; line-height: 30px; margin:30px 10px; font-size: 16px;}
+
+.paypal{text-align: center; border:1px solid #ccc; padding:40px; margin-top:50px; border-radius:5px;}
+.paypal p{font-size: 18px; line-height:26px;}
+.paypal i{font-size: 78px; margin-bottom: 30px; color: red;}
+.paypal .btn-login{width: 50%; line-height: 30px; margin:30px 10px; font-size: 16px;}
+
+
+
+.yme{text-align: center; border:1px solid #ccc; padding:40px; margin-top:50px; border-radius:5px;}
+.yme h3{line-height: 78px; color:red}
+.yme p{font-size: 18px; line-height:26px;}
+.yme i{font-size: 58px; margin-bottom: 30px; color: red;}
+
+
+.page-not-found{text-align: center; border:1px solid #ccc; padding:40px; margin-top:50px; border-radius:5px;}
+.page-not-found h1{font-size: 48px; margin-bottom: 30px; color:red}
+.page-not-found h2{font-size: 28px; color:#0093D1;}
+.page-not-found p{font-size: 18px; line-height:26px;}
+.page-not-found i{font-size: 78px; }
+
+
 
 
 
