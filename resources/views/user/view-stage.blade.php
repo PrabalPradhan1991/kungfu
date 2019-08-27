@@ -14,6 +14,7 @@
     .chpass .btn-default{margin-top: 10px;}
 
 
+
 </style>
 
 @section('content')
@@ -87,12 +88,8 @@
         		</table>
         	</div>
             @endif
-        	
-        </div>
-
-    </div>
-    
-        <?php $next_stage = (new \App\Http\Controllers\CoreModules\Videos\StageModel)->getNextStage($stage->id); ?>
+            <div class="col-md-12">
+                  <?php $next_stage = (new \App\Http\Controllers\CoreModules\Videos\StageModel)->getNextStage($stage->id); ?>
         @if(!is_null($next_stage))
             <form method="post" action="{{ route('reqeust-access-stage-post', $next_stage->id) }}">
                 <center>
@@ -109,6 +106,15 @@
                 {{ csrf_field() }}
             </form>
         @endif
+        
+                
+            </div>
+        	
+        </div>
+
+    </div>
+    
+
 </div>
 @stop
 @section('custom-js')

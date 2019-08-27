@@ -232,6 +232,10 @@ font-size: 24px;
     vertical-align: middle;
     width: 80%;
 }
+.chpass .stages {
+    margin: 10px 0;
+    height: 66px;
+}
 
 @media(max-width: 480px){
 	.chpass{margin-bottom:90px;}
