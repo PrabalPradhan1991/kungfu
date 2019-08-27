@@ -110,48 +110,34 @@ class VideoController extends Controller
     	$path= $data['path'];
         $handler = $data['handler'];
         
-        $lifetime = 31556926; //'.DS.'/ One year in seconds
-
-        /**
-        * Prepare some header variables
-        */
-        $file_time = $handler->getMTime(); // Get the last modified time for the file (Unix timestamp)
-
-        $header_content_type = $handler->getMimeType();
-        $header_content_length = $handler->getSize();
-        $header_etag = md5($file_time . $path);
-        $header_last_modified = gmdate('r', $file_time);
-        $header_expires = gmdate('r', $file_time + $lifetime);
-
+        $fullsize = filesize($data['path']);
+        $size = $fullsize;
+        $stream = fopen($data['path'], "r");
+        $response_code = 200;
+        $headers = array("Content-type" => 'video/mp4');
         
-        $headers = array(
-            'Content-Disposition' => 'inline; filename="' . $filename . '"',
-            'Last-Modified' => $header_last_modified,
-            'Cache-Control' => 'must-revalidate',
-            'Expires' => $header_expires,
-            'Pragma' => 'public',
-            'Etag' => $header_etag
-        );
-
-        /**
-        * Is the resource cached?
-        */
-
-        $h1 = isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && $_SERVER['HTTP_IF_MODIFIED_SINCE'] == $header_last_modified;
-        $h2 = isset($_SERVER['HTTP_IF_NONE_MATCH']) && str_replace('"', '', stripslashes($_SERVER['HTTP_IF_NONE_MATCH'])) == $header_etag;
-
-        if ($h1 || $h2) {
-            return \Response::make('', 304, $headers); // File (image) is cached by the browser, so we don't have to send it again
+        // Check for request for part of the stream
+        $range = app('request')->header('Range');
+        //app('request')->header('pubapi');
+        if($range != null) {
+            $eqPos = strpos($range, "=");
+            $toPos = strpos($range, "-");
+            $unit = substr($range, 0, $eqPos);
+            $start = intval(substr($range, $eqPos+1, $toPos));
+            $success = fseek($stream, $start);
+            if($success == 0) {
+                $size = $fullsize - $start;
+                $response_code = 206;
+                $headers["Accept-Ranges"] = $unit;
+                $headers["Content-Range"] = $unit . " " . $start . "-" . ($fullsize-1) . "/" . $fullsize;
+            }
         }
-
-
-        $headers = array_merge($headers, array(
-            'Content-Type' => $header_content_type,
-            'Content-Length' => $header_content_length
-        ));
-
         
-        return \Response::make(file_get_contents($path), 200, $headers);
+        $headers["Content-Length"] = $size;
+
+        return \Response::stream(function () use ($stream) {
+            fpassthru($stream);
+        }, $response_code, $headers);
     }
 
     public function getAsset($directory, $filename) {
@@ -192,7 +178,7 @@ class VideoController extends Controller
             'Cache-Control' => 'must-revalidate',
             'Expires' => $header_expires,
             'Pragma' => 'public',
-            'Etag' => $header_etag
+            'Etag' => $header_etag,
         );
 
         /**
@@ -216,3 +202,45 @@ class VideoController extends Controller
         return \Response::make(file_get_contents($path), 200, $headers);   
     }
 }
+
+/*
+$size = Storage::disk('local')->size('files/'.$filename);
+$file = Storage::disk('local')->get('files/'.$filename);
+$stream = fopen($storage_home_dir.'files/'.$filename, "r");
+
+$type = 'video/mp4';
+$start = 0;
+$length = $size;
+$status = 200;
+
+$headers = ['Content-Type' => $type, 'Content-Length' => $size, 'Accept-Ranges' => 'bytes'];
+
+if (false !== $range = Request::server('HTTP_RANGE', false)) {
+    list($param, $range) = explode('=', $range);
+    if (strtolower(trim($param)) !== 'bytes') {
+    header('HTTP/1.1 400 Invalid Request');
+    exit;
+    }
+    list($from, $to) = explode('-', $range);
+    if ($from === '') {
+    $end = $size - 1;
+    $start = $end - intval($from);
+    } elseif ($to === '') {
+    $start = intval($from);
+    $end = $size - 1;
+    } else {
+    $start = intval($from);
+    $end = intval($to);
+    }
+    $length = $end - $start + 1;
+    $status = 206;
+    $headers['Content-Range'] = sprintf('bytes %d-%d/%d', $start, $end, $size);
+}
+
+return Response::stream(function() use ($stream, $start, $length) {
+    fseek($stream, $start, SEEK_SET);
+    echo fread($stream, $length);
+    fclose($stream);
+    }, $status, $headers);
+}
+*/
