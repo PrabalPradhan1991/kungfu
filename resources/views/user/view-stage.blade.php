@@ -12,6 +12,7 @@
     height: 210px;
 }
     .chpass .btn-default{margin-top: 10px;}
+    .chpass p span{color: red; font-weight: bold;}
 
 
 
@@ -95,7 +96,7 @@
                 <center>
                     <?php $check = (new \App\Http\Middleware\CheckStageAccess)->check(\Auth::user()->id, $next_stage->id); ?>
                     @if(\App\Http\Controllers\CoreModules\Videos\RequestModel::where('to_stage_id', $next_stage->id)->where('user_id', \Auth::user()->id)->first())
-                        <p>Request Pending</p>
+                        <p><span>Request Pending<span></p>
                     @elseif($check == false)
                     <p></p>
                         <button type="submit" class="btn btn-default"><i class="fas fa-shopping-basket"></i> Request Access To  {{ $next_stage->stage_name }}</button>
@@ -107,7 +108,7 @@
             </form>
         @endif
         
-                
+
             </div>
         	
         </div>
