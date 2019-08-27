@@ -28,7 +28,7 @@
 
 						
 						<div class="form-group">
-							<label for="description">Price</label>
+							<label for="description">Price {{ CURRENCY }}</label>
 							<input name="stage[price]" class="form-control" type="number" value="{{ $data->price }}"/>
 							<span class="error-block">	@if($errors->has('price'))
 								@foreach($errors->get('price') as $e)
