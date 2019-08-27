@@ -26,7 +26,7 @@
         	
         	<div class="col-md-8">
         		<div><h2><i class="fas fa-hand-point-right"></i> {{ $stage->stage_name }}</h2></div>
-        		<div><h3>Price: {{ $stage->price }}</h3></div>
+        		<div><h3>Price:{{ CURRENCY }} {{ $stage->price }}</h3></div>
         		<p>
         			{!! nl2br($stage->stage_description) !!}
         		</p>
@@ -102,6 +102,7 @@
                     @elseif($check == false)
                     <p></p>
                         <button type="submit" class="btn btn-default"><i class="fas fa-shopping-basket"></i> Request Access To  {{ $next_stage->stage_name }}</button>
+
                     @elseif($check)
                     @endif
                 </center>

@@ -218,7 +218,7 @@
 	         			</div>
 	         	</div>	
 			         	<p></p>			
-			         	<p style="font-size: 13px; text-align: center;">Already have an account <a href="login.php">Log in</a>
+			         	<p style="font-size: 13px; text-align: center;">Already have an account <a href="{{ route('login') }}">Log in</a>
 			         	</p>
 
 		    </div>

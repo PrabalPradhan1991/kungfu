@@ -57,9 +57,9 @@
 												<i class="fa fa-times"></i>
 											</button>
 											</form> --}}
-											<a href="{{ route('admin-stages-edit-get', $d->id) }}" data-toggle="tooltip" title="Edit Stage" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Stage"><i class="fa fa-edit"></i></a>
-											<a href="{{ route('admin-stages-add-videos-get', $d->id) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Add Videos"><i class="fa fa-edit"></i></a>
-											<a href="{{ route('admin-stages-add-pdfs-get', $d->id) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Add PDFs"><i class="fa fa-edit"></i></a>
+											<a href="{{ route('admin-stages-edit-get', $d->id) }}" data-toggle="tooltip" title="Edit Stage" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Stage"><i class="fa fa-edit"></i>Edit Stage</a>
+											<a href="{{ route('admin-stages-add-videos-get', $d->id) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Add Videos"><i class="fa fa-edit"></i>Add Videos</a>
+											<a href="{{ route('admin-stages-add-pdfs-get', $d->id) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Add PDFs"><i class="fa fa-edit"></i>Add Pdfs</a>
 										</div>			
 									</td>
 								</tr>

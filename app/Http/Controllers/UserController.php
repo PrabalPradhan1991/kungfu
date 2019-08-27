@@ -107,6 +107,22 @@ class UserController extends Controller {
 		$user_table = (new \App\User)->getTable();
 		$user_details_table = (new \App\UserDetailsModel)->getTable();
 		$payment_details_table = (new \App\Http\Controllers\CoreModules\Subscription\PaymentDetailsModel)->getTable();
+		$user_stage = (new \App\Http\Controllers\CoreModules\Videos\UserStageModel)->getTable();
+		$stage = (new \App\Http\Controllers\CoreModules\Videos\StageModel)->getTable();
+
+		$_user_stage_data = \DB::table($stage)
+						->join($user_stage, $user_stage.'.stage_id', '=', $stage.'.id')
+						->select('stage_name', 'user_id', 'ordering')
+						->get();
+
+		$user_stage_data = [];
+		foreach($_user_stage_data as $u) {
+			if(isset($user_stage_data[$u->user_id])) {
+				$user_stage_data[$u->user_id] = $user_stage_data[$u->user_id]['ordering'] > $u->ordering ? ['stage' => $u->stage_name, 'ordering' => $u->ordering] : $user_stage_data[$u->user_id];
+			} else {
+				$user_stage_data[$u->user_id] = ['stage' => $u->stage_name, 'ordering' => $u->ordering];
+			}	
+		}
 
 		$data = \DB::table($user_table)
 					->join($user_details_table, $user_details_table.'.user_id', '=', $user_table.'.id')
@@ -116,7 +132,10 @@ class UserController extends Controller {
 					->orderBy('user_id', 'DESC')
 					->get();
 
+//		dd($user)
+
 		return view('user.list')
-				->with('data', $data);
+				->with('data', $data)
+				->with('user_stage_data', $user_stage_data);
 	}
 }

@@ -32,7 +32,7 @@
 			</form>
 			
 				<div class="card-body">
-					<div class="col-sm-10">
+					<div class="col-sm-12">
 						@if(!empty($pdfs))
 							@foreach($pdfs as $v)
 								<form method="post" id="admin-pdfs-delete-post-{{ $v->id }}" action="{{ route('admin-pdfs-delete-post', $v->id) }}" class="prabal-confirm">

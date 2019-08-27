@@ -12,7 +12,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4">
+            {{-- <div class="col-md-4">
                <div class="form-group">
                   <center>
                      <a href="#">
@@ -22,7 +22,7 @@
                      </div>
                   </center>
                </div>
-            </div>
+            </div> --}}
             <div class="col-md-8">
 	            <div class="row">
 	               <div class="col-md-6">
