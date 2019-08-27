@@ -21,7 +21,7 @@
         	<?php $check = (new \App\Http\Middleware\CheckStageAccess)->check(\Auth::user()->id, $s->id); ?>
         	<div class="col-md-4">
         		<div class="stages">
-	        		<a @if($check) href="{{ route('view-stage', $s->id) }}" @endif class="btn btn-info btn-flat form-control @if($check) stage @else stage-disabled @endif" style="background: {{ $s->color  }} !important; color: #999"><i class="fas fa-hand-point-right"></i> {{ $s->stage_name }}</a>
+	        		<a @if($check) href="{{ route('view-stage', $s->id) }}" @endif class="btn btn-info btn-flat form-control @if($check) stage @else stage-disabled @endif" style="background: {{ $s->color  }} !important; color: #999">@if($check)<i class="fas fa-hand-point-right">@else<i class="fas fa-ban"></i>@endif</i> {{ $s->stage_name }}</a>
 	        		<form method="post" action="{{ route('reqeust-access-stage-post', $s->id) }}">
 						<center>
 							@if(\App\Http\Controllers\CoreModules\Videos\RequestModel::where('to_stage_id', $s->id)->where('user_id', \Auth::user()->id)->first())
