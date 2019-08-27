@@ -234,7 +234,7 @@ font-size: 24px;
 }
 .chpass .stages {
     margin: 10px 0;
-    height: 66px;
+    height: 74px;
 }
 
 @media(max-width: 480px){
@@ -332,6 +332,15 @@ height: 0;
 .confirmation h1{color:green;}
 .confirmation p{font-size: 16px; line-height: 26px;}
 
+    @media(max-width:480px){
+    .chpass video{width:100%;   height:208px !important; }
+    .my-video-dimensions {
+    width: 100%;
+    height:208px;
+    margin-bottom: 10px;
+}
+
+}
 
 
 

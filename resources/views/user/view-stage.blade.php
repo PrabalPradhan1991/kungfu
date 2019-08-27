@@ -2,17 +2,20 @@
 
 
 <style type="text/css">
-    .chpass h2{margin-top: 0; text-transform: uppercase; color:red;}
-    .chpass h3{margin-top: 0; text-transform: uppercase; font-size: 20px;}
+    .chpass h2{margin-top: 0; font-weight: bold; text-decoration: underline; color:red; text-align: center;}
+    .chpass h2 i{margin-right: 10px;}
+    .chpass h3{margin-top: 0; text-transform: uppercase; font-size:16px; font-weight: bold; text-align: center;}
+    .chpass h4{margin-top: 0;  font-size:20px; font-weight: bold; color: red;}
     .chpass td a{color:#222; font-size: 16px;}
     .chpass video{width:100%;   height: auto; }
-    .video-js .vjs-big-play-button {top: 39% !important; left: 37% !important;}
+    .video-js .vjs-big-play-button {top: 41% !important; left: 42% !important;}
     .my-video-dimensions {
-    width: 340px;
-    height: 210px;
+    width: 100%;
+    height:303px;
+    margin-bottom: 10px;
 }
     .chpass .btn-default{margin-top: 10px;}
-    .chpass p span{color: red; font-weight: bold;}
+    .chpass p span{color: red; font-weight: bold; font-size: 13px;}
 
 
 
@@ -27,24 +30,32 @@
         <div class="row">
         	
         	<div class="col-md-8">
-        		<div><h2><i class="fas fa-hand-point-right"></i> {{ $stage->stage_name }}</h2></div>
+        		<div><h2><i class="fas fa-hand-point-right"></i>{{ $stage->stage_name }}</h2></div>
         		<div><h3>Price:{{ CURRENCY }} {{ $stage->price }}</h3></div>
-        		<p>
-        			{!! nl2br($stage->stage_description) !!}
-        		</p>
+        		
                 <?php $status = (new \App\Http\Middleware\CheckStagePaymentStatus)->check(\Auth::user()->id, $stage->id, 'By Bank'); ?>
                 @if(!$status['status'] && $status['purchase_status'] == 'purchased')
             		@if($selected_video)
             		<div class="row">
+                        
     	        		<div class="col-md-12 ">               
-    	        			<video id='my-video' class='video-js ' controls preload='auto' data-setup='{}'>
+    	        			<video id='my-video' class='video-js' controls preload='auto' data-setup='{}'>
     						    <source src="{{ route('get-video-from-filename', [$selected_video->video_filename, $video_id]) }}" type='{{ $selected_video->mime }}'>
     						    <p class='vjs-no-js'>
     						      To view this video please enable JavaScript, and consider upgrading to a web browser that
     						      <a href='https://videojs.com/html5-video-support/' target='_blank'>supports HTML5 video</a>
     						    </p>
     						</video>
+                                <center><p><b>Video Title</b></p></center>
+
     	        		</div>
+                        <div class="col-md-12">
+                            <h4>Description</h4>
+                            <p>
+                                {!! nl2br($stage->stage_description) !!}
+                            </p>
+                        </div>
+                        
             		</div>
             		@endif
                 @elseif($status['purchase_status'] == 'review')
