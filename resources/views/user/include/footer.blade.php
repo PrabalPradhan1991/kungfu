@@ -11,7 +11,8 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 $( function() {
-	$( ".date" ).datepicker({ dateFormat: 'yy-mm-dd' });
+	$( ".date" ).datepicker({ dateFormat: 'yy-mm-dd',changeMonth: true,
+    changeYear: true });
 } );
 </script>
 <script src="{{ asset('assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js ')}}"></script>
