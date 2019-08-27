@@ -1,4 +1,10 @@
 @extends('backend.main')
+<style type="text/css">
+	.subscriptionrequest{text-align: center; margin-top: 20px; }
+	.subscriptionrequest h1{color:#0E4F88; font-size:36px; border-bottom: 2px #0E4F88 solid; padding-bottom: 10px;}
+	.subscriptionrequest p{font-size: 16px; font-weight: bold;}
+
+</style>
 
 @section('content')
 <div class="row sierra-row">	
@@ -17,6 +23,14 @@
 				<input type="submit" class="prabal-checkbox-submit btn btn-danger" related-id="add-row" related-form="prabal-delete-form" value="Delete">
 				<div class="place-for-id-checkbox"></div>
 			</form> --}}
+			<div class="row">
+				<div class="col-md-12">
+					<div class="subscriptionrequest">
+						<h1>Stages</h1>
+						<p>( Add, edit stages & content )</p>
+					</div>	
+				</div>		
+			</div>
 			<div class="card-body">
 				@if(!empty($data))
 				<div class="table-responsive">

@@ -100,7 +100,8 @@
                     @if(\App\Http\Controllers\CoreModules\Videos\RequestModel::where('to_stage_id', $next_stage->id)->where('user_id', \Auth::user()->id)->first())
                         <p>Request Pending</p>
                     @elseif($check == false)
-                        <button type="submit" class="btn btn-default"><i class="fas fa-shopping-basket"></i> Request Access To {{ $next_stage->stage_name }}</button>
+                    <p></p>
+                        <button type="submit" class="btn btn-default"><i class="fas fa-shopping-basket"></i> Request Access To  {{ $next_stage->stage_name }}</button>
                     @elseif($check)
                     @endif
                 </center>

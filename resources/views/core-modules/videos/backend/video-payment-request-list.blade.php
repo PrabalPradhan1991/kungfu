@@ -1,10 +1,18 @@
 @extends('backend.main')
+<style type="text/css">
+	.subscriptionrequest{text-align: center; margin-top: 20px; }
+	.subscriptionrequest h1{color:#0E4F88; font-size:36px; border-bottom: 2px #0E4F88 solid; padding-bottom: 10px;}
+		.subscriptionrequest p{font-size: 16px; font-weight: bold;}
+
+</style>
 
 @section('content')
 <div class="row sierra-row">	
 	<div class="col-md-12">
 		<div class="card">
 			<div class="card-header">
+				
+
 					{{-- <div class="d-flex align-items-center">
 						<a href="{{ route('admin-stages-create-get') }}" class="btn btn-primary btn-round ml-auto">
 							<i class="fa fa-plus"></i>
@@ -12,6 +20,14 @@
 						</a>
 					</div>	--}}
 			</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="subscriptionrequest">
+							<h1>Purchase Requests</h1>
+							<p>( List of stage purchases made by bank will appear here. confirm the payment and approve users )</p>
+						</div>	
+					</div>		
+				</div>
 			<form method="post" action="{{ route('admin-stages-delete-multiple-post') }}" class="prabal-confirm" id="prabal-delete-form">
 				{{ csrf_field() }}
 				<input type="submit" class="prabal-checkbox-submit btn btn-danger" related-id="add-row" related-form="prabal-delete-form" value="Delete">

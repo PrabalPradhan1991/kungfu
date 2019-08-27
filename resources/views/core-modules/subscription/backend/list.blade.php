@@ -1,5 +1,12 @@
 @extends('backend.main')
 
+<style type="text/css">
+	.subscriptionrequest{text-align: center; margin-top: 20px; }
+	.subscriptionrequest h1{color:#0E4F88; font-size:36px; border-bottom: 2px #0E4F88 solid; padding-bottom: 10px;}
+		.subscriptionrequest p{font-size: 16px; font-weight: bold;}
+
+</style>
+
 @section('content')
 <div class="row sierra-row">	
 	<div class="col-md-12">
@@ -12,8 +19,13 @@
 						</a>
 					</div>	--}}
 			</div>
-			<div class="d-flex align-items-center">
-				<p>Subscription Requests</p>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="subscriptionrequest">
+						<h1>Member Request</h1>
+						<p>( List of users who pay by bank for the subscription appear here. confirm the payment and approve users )</p>
+					</div>	
+				</div>		
 			</div>
 
 			<div class="card-body">
