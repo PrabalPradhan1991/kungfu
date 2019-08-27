@@ -50,6 +50,13 @@
 							</a>
 							<div class="collapse" id="dashboard">
 								<ul class="nav nav-collapse">
+									
+									<li class="nav-item nav-item-dashboard">
+										<a href="{{ URL::route('admin-user-list')}}">
+											<i class="far fa-file"></i>						
+											<p>Users</p>
+										</a>
+									</li>
 									<li class="nav-item nav-item-dashboard">
 										<a href="{{ URL::route('admin-stages-list-get')}}">
 											<i class="far fa-file"></i>						
