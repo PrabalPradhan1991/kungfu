@@ -11,7 +11,12 @@
 @section('content')
 <div class="col-md-9">
     <div class="chpass">
+    	
         <div class="row">
+        	<div class="col-md-12 grading">
+	        	<h2><i class="fas fa-bacon"></i> Grading System:</h2>
+	    		<p>Access to the grading system is allowed in stages. one needs to complete a sash & request access in order to progress to the next stage.</p>	
+        	</div>
         	@foreach($stages as $index => $s)
         	<?php $check = (new \App\Http\Middleware\CheckStageAccess)->check(\Auth::user()->id, $s->id); ?>
         	<div class="col-md-4">

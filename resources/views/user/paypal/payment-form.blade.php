@@ -7,7 +7,9 @@
 				<div class="col-md-3"></div>
 				<div class="col-md-6">
 					<div class="renew">
-						<h1><i class="fas fa-hourglass-end"></i> Renew</h1>
+						<h1><i class="fas fa-hourglass-end"></i> PAYMENT</h1>
+						<p>Annual subscription fee of $100 is required to access exclusive content and the membership area. <br><br>
+Proceed to pay :</p>
 						{{ csrf_field() }}
 						<input type="submit" class="btn btn-login btn-flat" value="By Paypal" name="payment_method">
 						<input type="submit" class="btn btn-login1 btn-flat" value="By Bank" name="payment_method">

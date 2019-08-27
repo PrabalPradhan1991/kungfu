@@ -6,7 +6,7 @@
 	<div class="details">
 
 		<div class="row">
-			<div class="col-md-4">
+			{{-- <div class="col-md-4">
 				<div class="users">
 	                <div class="user-profile-img-block"> 
 		                <div class="user-profile-img text-center">
@@ -17,7 +17,7 @@
 		                </div>
 	                </div> 
   				</div>
-			</div>
+			</div> --}}
 
 			<div class="col-md-6">
 				<div class="details">

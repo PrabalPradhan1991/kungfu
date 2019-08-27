@@ -301,6 +301,7 @@ height: 0;
 .renew{text-align: center; border:1px solid #ccc; padding-bottom:40px; margin-top:50px;}
 .renew h1{text-transform: uppercase; color: #fff; font-size:26px; line-height: 52px; margin-top: 0; margin-bottom: 30px;  background: red; border-bottom:1px solid #900; }
 .renew .btn-login, .renew .btn-login1{width: 40%; line-height: 30px; margin:30px 10px; font-size: 16px;}
+.renew p{font-size: 16px; font-weight: bold; padding: 0 20px;}
 
 .paypal{text-align: center; border:1px solid #ccc; padding:40px; margin-top:50px; border-radius:5px;}
 .paypal p{font-size: 18px; line-height:26px;}
@@ -320,6 +321,10 @@ height: 0;
 .page-not-found h2{font-size: 28px; color:#0093D1;}
 .page-not-found p{font-size: 18px; line-height:26px;}
 .page-not-found i{font-size: 78px; }
+
+.grading h2{margin-top:0; color: red;}
+.grading i{color:#000;}
+.grading p{font-size: 14px; font-weight: bold;}
 
 
 

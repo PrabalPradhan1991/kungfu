@@ -27,6 +27,7 @@
 								<th>Name</th>
 								<th>Email</th>
 								<th>Phone</th>
+								<th>Stage</th>
 								<th>Expiration Date</th>
 							</tr>
 						</thead>
@@ -37,6 +38,7 @@
 									<td>{{ $d->username }}</td>
 									<td>{{ $d->email }}</td>
 									<td>{{ $d->phone }}</td>
+									<td>@if(isset($user_stage_data[$d->user_id])) {{ $user_stage_data[$d->user_id]['stage'] }} @endif</td>
 									<td>{{ $d->expiration_date }}</td>
 								</tr>
 							@endforeach
