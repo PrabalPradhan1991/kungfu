@@ -3,8 +3,8 @@
 	.edit-stage h1{color:#0E4F88 !important; font-size:36px; border-bottom: 2px solid #0E4F88; line-height: 50px;}
 	 p{font-size: 16px; font-weight: bold;}
 	 i{margin-right: 10px;}
-	 .remove-video {padding:5px !important; width: 42px;}
-	 .remove-video i {font-size: 30px;}
+	 .remove-video {padding:2px !important; width: 22px;}
+	 .remove-video i {font-size: 16px;}
 
 </style>
 @section('content')
@@ -97,10 +97,18 @@
 											<input type="hidden" class="mime">
 											<img src=""/>
 											<p></p>
-											<div class="progress" style="display: flex;">
-												<div class="progress-bar initial" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%; opacity: 100;">
+											<div class="row">
+												<div class="col-md-9">
+													<div class="progress" style="display: flex;">
+														<div class="progress-bar initial" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%; opacity: 100;">
+														</div>
+													</div>
+												</div>
+												<div class="col-md-1">
+													<a href="#" class="btn btn-danger remove-video"><i class="fas fa-times-circle"></i></a>
 												</div>
 											</div>
+											
 											<span class="error-block">
 											</span>
 										</div>
@@ -108,14 +116,11 @@
 									<div class="col-md-7 col-sm-12">
 										<div class="form-group">
 											<label for="video_title">Title</label>
-											<input type="text" class="form-control data-name" data-name="video_title[]">
+											<input type="text" class="form-control data-name" data-name="video_title[]" required>
 										</div>
 									</div>
 									
-									<div class="col-md-3 col-sm-12">
-										<a href="#" class="btn btn-danger remove-video"><i class="fas fa-times-circle"></i></a>
-
-									</div>
+									
 								</div>
 							</div>
 							<div id="ajax-add-videos">
@@ -157,7 +162,7 @@
 
 		$(document).on('click', '.remove-video', function(e){
 			e.preventDefault()
-			$(this).parent().parent().remove()
+			$(this).parent().parent().parent().parent().parent().remove()
 		})
 
 		$('#ajax-add-videos').on('change', 'input[type="file"]', function(e)
