@@ -6,7 +6,7 @@
 	<div class="details">
 
 		<div class="row">
-			{{-- <div class="col-md-4">
+			{{--<div class="col-md-4">
 				<div class="users">
 	                <div class="user-profile-img-block"> 
 		                <div class="user-profile-img text-center">
@@ -16,12 +16,13 @@
 	                        </center>
 		                </div>
 	                </div> 
-  				</div>
+  				</div> 
 			</div> --}}
 
 			<div class="col-md-6">
 				<div class="details">
-					<p><b><i class="fas fa-eye-dropper"></i></b>name: {{ $user->name }}</p>
+					<h3>Hi, {{ $user->name }}</h3>
+					{{--<p><b><i class="fas fa-eye-dropper"></i></b>name: {{ $user->name }}</p>--}}
 					<p><b><i class="fas fa-envelope"></i></b>email: {{ $user->email }}</p>
 					<p><b><i class="fas fa-mobile-alt"></i></b> phone: {{ $user->phone }} </p>
 					<p><b><i class="fas fa-map-marker-alt"></i></b>location: {{ $user->street_address }}, {{ $user->suburb }}, {{ $user->state }}</p>

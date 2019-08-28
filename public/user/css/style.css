@@ -56,6 +56,10 @@ p{font-size: 14px; line-height: 20px;}
 }
 .copyright a{color:red;}
 
+.error-block {
+    color: red;
+}
+
 @media(max-width: 480px){
 .header .site-branding img {
     vertical-align: middle;
