@@ -83,7 +83,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-8">
                     <?php $next_stage = (new \App\Http\Controllers\CoreModules\Videos\StageModel)->getNextStage($stage->id); ?>
                     @if(!is_null($next_stage))
                         <form method="post" action="{{ route('reqeust-access-stage-post', $next_stage->id) }}">
@@ -94,6 +94,7 @@
                                 @elseif($check == false)
                                 <p></p>
                                     <button type="submit" class="btn btn-default"><i class="fas fa-shopping-basket"></i> Request Access To  {{ $next_stage->stage_name }}</button>
+                                                                
 
                                 @elseif($check)
                                 @endif
@@ -103,23 +104,26 @@
                     @endif
                 </div>
             @else
-                <div class="col-md-12">
+                <div class="col-md-12 text-center">
                     <div><h2><i class="fas fa-hand-point-right"></i>{{ $stage->stage_name }}</h2></div>
                     <div><h3>Price:{{ CURRENCY }} {{ $stage->price }}</h3></div>
                     @if($status['purchase_status'] == 'review')
                         <p>Your payment is under review</p>
                     @else
                         <form method="post" action="{{ route('buy-stage') }}">
-                             <p>Access to subsequent stages needs to be verified by our admin. All stages needs to purchased. Please make the payment by clicking on the payment option of your choice.</p>
+                             <p class="text-center">Access to subsequent stages needs to be verified by our admin. All stages needs to purchased. Please make the payment by clicking on the payment option of your choice.</p>
                             <p></p>
-                            <button type="submit" class="btn btn-default" name="payment_method" value="By Bank"><i class="fas fa-shopping-basket"></i> By Bank</button>
+                            <button  type="submit" class="btn btn-default" name="payment_method" value="By Bank"><i class="fas fa-shopping-basket"></i> By Bank</button>
                             <button type="submit" class="btn btn-default" name="payment_method" value="By Paypal"><i class="fas fa-shopping-basket"></i> By Paypal</button>
                             {{ csrf_field() }}
                             <input type="hidden" name="user_id" value="{{ \Auth::user()->id }}">
                             <input type="hidden" name="stage_id" value="{{ $stage->id }}">
                             <input type="hidden" name="return_url" value="{{ url()->current() }}">
-                            <p>( If you need to pay by bank , please make a deposit of the stage amount to our bank and include your name as refrence and then submit the button )</p>
-                            <p></p>
+                            <p></p> 
+                            <p class="text-center">If you need to pay by bank , please make a deposit of the stage amount to our bank and include your name as refrence and then submit the button </p>
+                            <p class="text-center"><b>(Account Name : xxxxxx  |  BSB : xxxxxx  |   Account Number : xxxxxx)</b></p>
+                            
+                            
                         </form>
                     @endif
                 </div>
