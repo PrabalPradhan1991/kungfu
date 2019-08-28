@@ -46,7 +46,7 @@
     						      <a href='https://videojs.com/html5-video-support/' target='_blank'>supports HTML5 video</a>
     						    </p>
     						</video>
-                                <center><p><b>Video Title</b></p></center>
+                                <center><p><b>{{ $selected_video->title }}</b></p></center>
 
     	        		</div>
                         <div class="col-md-12">
