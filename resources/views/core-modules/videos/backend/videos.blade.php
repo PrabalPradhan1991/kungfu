@@ -1,28 +1,33 @@
 @extends('backend.main')
 <style type="text/css">
-	.subscriptionrequest{text-align: center; margin-top: 20px; }
-	.subscriptionrequest h1{color:#0E4F88; font-size:36px; border-bottom: 2px #0E4F88 solid; padding-bottom: 10px;}
-		.subscriptionrequest p{font-size: 16px; font-weight: bold;}
+	.edit-stage h1{color:#0E4F88 !important; font-size:36px; border-bottom: 2px solid #0E4F88; line-height: 50px;}
+	 p{font-size: 16px; font-weight: bold;}
+	 i{margin-right: 10px;}
+	 .remove-video {padding:5px !important; width: 42px;}
+	 .remove-video i {font-size: 30px;}
 
 </style>
 @section('content')
 <div class="row sierra-row">	
 	<div class="col-md-12">
 		<div class="card">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="subscriptionrequest">
-						<h1>Add/Edit Videos</h1>
-					</div>	
-				</div>		
-			</div>
+			
 			<div class="card-header">
-					<div class="d-flex align-items-center">
-						<a href="{{ route('admin-stages-list-get') }}" class="btn btn-primary btn-round ml-auto">
-							<i class="fa fa-list"></i>&nbsp;
-							 List Stages
-						</a>
-					</div>	
+
+				<div class="row">
+					
+						<div class="col-md-10">
+							<div class="edit-stage"><h1>Add/Edit Videos</h1></div>
+						</div>	
+					
+						<div class="d-flex align-items-center">
+							<a href="{{ route('admin-stages-list-get') }}" class="btn btn-primary btn-round ml-auto">
+								<i class="fa fa-list"></i>&nbsp;
+								 List Stages
+							</a>
+						</div>
+				</div>
+
 			</div>
 
 			<form method="post" action="{{ route('admin-videos-delete-multiple-post') }}" class="prabal-confirm" id="prabal-delete-form">
@@ -80,8 +85,8 @@
 				@endif
 				<form method="post" enctype="multipart/form-data">
 						<div class="form-group">
-							<label for="videos">Videos</label>
-							<a class="add-video btn btn-info" href="#">Add Video</a>
+							{{--<label for="videos">Videos</label>--}}
+							<a class="add-video btn btn-info" href="#"><i class="fas fa-plus-circle"></i>Add Video</a>
 							<div id="ajax-add-videos-element" style="display: none">
 								<div class="row">
 									<div class="col-md-5 col-sm-12">
@@ -108,7 +113,8 @@
 									</div>
 									
 									<div class="col-md-3 col-sm-12">
-										<a href="#" class="btn btn-danger remove-video">Remove</a>
+										<a href="#" class="btn btn-danger remove-video"><i class="fas fa-times-circle"></i></a>
+
 									</div>
 								</div>
 							</div>
@@ -127,7 +133,7 @@
 			{{ csrf_field() }}
 				<div class="card-action">
 					<div class="col-sm-5">				
-						<button type="submit" class="btn btn-success">Edit</button>
+						<button type="submit" class="btn btn-success">Save</button>
 					</div>	
 				</div>
 			</form>

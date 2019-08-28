@@ -1,7 +1,7 @@
 @extends('backend.main')
 <style type="text/css">
-	.subscriptionrequest{text-align: center; margin-top: 20px; }
-	.subscriptionrequest h1{color:#0E4F88; font-size:36px; border-bottom: 2px #0E4F88 solid; padding-bottom: 10px;}
+
+		.edit-stage h1{color:#0E4F88 !important; font-size:36px; border-bottom: 2px solid #0E4F88; line-height: 50px;}
 		.subscriptionrequest p{font-size: 16px; font-weight: bold;}
 
 </style>
@@ -9,20 +9,21 @@
 <div class="row sierra-row">	
 	<div class="col-md-12">
 		<div class="card">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="subscriptionrequest">
-						<h1>Edit Stage</h1>
-					</div>	
-				</div>		
-			</div>
 			<div class="card-header">
-					<div class="d-flex align-items-center">
-						<a href="{{ route('admin-stages-list-get') }}" class="btn btn-primary btn-round ml-auto">
-							<i class="fa fa-list"></i>&nbsp;
-							 List Stages
-						</a>
-					</div>	
+				<div class="row">
+					
+						<div class="col-md-10">
+							<div class="edit-stage"><h1>Edit Stage</h1></div>
+						</div>	
+					
+						<div class="d-flex align-items-center">
+							<a href="{{ route('admin-stages-list-get') }}" class="btn btn-primary btn-round ml-auto">
+								<i class="fa fa-list"></i>&nbsp;
+								 List Stages
+							</a>
+						</div>
+				</div>		
+							
 			</div>
 
 			<form method="post" enctype="multipart/form-data">

@@ -108,7 +108,7 @@
                     <div><h2><i class="fas fa-hand-point-right"></i>{{ $stage->stage_name }}</h2></div>
                     <div><h3>Price:{{ CURRENCY }} {{ $stage->price }}</h3></div>
                     @if($status['purchase_status'] == 'review')
-                        <p>Your payment is under review</p>
+                        <p><b>Access to our grading stage is payment restricted. your payment is now under review you will be able to access this sash and its contents once the payment is verified.</b></p>
                     @else
                         <form method="post" action="{{ route('buy-stage') }}">
                              <p class="text-center">Access to subsequent stages needs to be verified by our admin. All stages needs to purchased. Please make the payment by clicking on the payment option of your choice.</p>
