@@ -63,12 +63,16 @@
                   
                 @else
                     <form method="post" action="{{ route('buy-stage') }}">
+                        <p>Access to subsequent stages needs to be verified by our admin. All stages needs to purchased. Please make the payment by clicking on the payment option of your choice.</p>
+                        <p></p>
                         <button type="submit" class="btn btn-default" name="payment_method" value="By Bank"><i class="fas fa-shopping-basket"></i> By Bank</button>
                         <button type="submit" class="btn btn-default" name="payment_method" value="By Paypal"><i class="fas fa-shopping-basket"></i> By Paypal</button>
                         {{ csrf_field() }}
                         <input type="hidden" name="user_id" value="{{ \Auth::user()->id }}">
                         <input type="hidden" name="stage_id" value="{{ $stage->id }}">
                         <input type="hidden" name="return_url" value="{{ url()->current() }}">
+                        <p></p>
+                        <p>( If you need to pay by bank , please make a deposit of the stage amount to our bank and include your name as refrence and then submit the button )</p>
                     </form>
                 @endif
         	</div>
