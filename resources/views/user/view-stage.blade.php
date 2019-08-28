@@ -28,25 +28,25 @@
     <div class="chpass">
 
         <div class="row">
-        	<?php $status = (new \App\Http\Middleware\CheckStagePaymentStatus)->check(\Auth::user()->id, $stage->id, 'By Bank'); ?>
-        	@if(!$status['status'] && $status['purchase_status'] == 'purchased')
+            <?php $status = (new \App\Http\Middleware\CheckStagePaymentStatus)->check(\Auth::user()->id, $stage->id, 'By Bank'); ?>
+            @if(!$status['status'] && $status['purchase_status'] == 'purchased')
                 <div class="col-md-8">
-            		<div><h2><i class="fas fa-hand-point-right"></i>{{ $stage->stage_name }}</h2></div>
-            		<div><h3>Price:{{ CURRENCY }} {{ $stage->price }}</h3></div>
-                		@if($selected_video)
-                		<div class="row">
+                    <div><h2><i class="fas fa-hand-point-right"></i>{{ $stage->stage_name }}</h2></div>
+                    <div><h3>Price:{{ CURRENCY }} {{ $stage->price }}</h3></div>
+                        @if($selected_video)
+                        <div class="row">
                             
-        	        		<div class="col-md-12 ">               
-        	        			<video id='my-video' class='video-js' controls preload='auto' data-setup='{}'>
-        						    <source src="{{ route('get-video-from-filename', [$selected_video->video_filename, $video_id]) }}" type='{{ $selected_video->mime }}'>
-        						    <p class='vjs-no-js'>
-        						      To view this video please enable JavaScript, and consider upgrading to a web browser that
-        						      <a href='https://videojs.com/html5-video-support/' target='_blank'>supports HTML5 video</a>
-        						    </p>
-        						</video>
+                            <div class="col-md-12 ">               
+                                <video id='my-video' class='video-js' controls preload='auto' data-setup='{}'>
+                                    <source src="{{ route('get-video-from-filename', [$selected_video->video_filename, $video_id]) }}" type='{{ $selected_video->mime }}'>
+                                    <p class='vjs-no-js'>
+                                      To view this video please enable JavaScript, and consider upgrading to a web browser that
+                                      <a href='https://videojs.com/html5-video-support/' target='_blank'>supports HTML5 video</a>
+                                    </p>
+                                </video>
                                     <center><p><b>{{ $selected_video->title }}</b></p></center>
 
-        	        		</div>
+                            </div>
                             <div class="col-md-12">
                                 <h4>Description</h4>
                                 <p>
@@ -54,9 +54,9 @@
                                 </p>
                             </div>
                             
-                		</div>
-                		@endif
-            	</div>
+                        </div>
+                        @endif
+                </div>
                 <div class="col-md-4">
                     <table class="table table-striped table-bordered">
                         <tbody>
@@ -110,12 +110,16 @@
                         <p>Your payment is under review</p>
                     @else
                         <form method="post" action="{{ route('buy-stage') }}">
+                             <p>Access to subsequent stages needs to be verified by our admin. All stages needs to purchased. Please make the payment by clicking on the payment option of your choice.</p>
+                            <p></p>
                             <button type="submit" class="btn btn-default" name="payment_method" value="By Bank"><i class="fas fa-shopping-basket"></i> By Bank</button>
                             <button type="submit" class="btn btn-default" name="payment_method" value="By Paypal"><i class="fas fa-shopping-basket"></i> By Paypal</button>
                             {{ csrf_field() }}
                             <input type="hidden" name="user_id" value="{{ \Auth::user()->id }}">
                             <input type="hidden" name="stage_id" value="{{ $stage->id }}">
                             <input type="hidden" name="return_url" value="{{ url()->current() }}">
+                            <p>( If you need to pay by bank , please make a deposit of the stage amount to our bank and include your name as refrence and then submit the button )</p>
+                            <p></p>
                         </form>
                     @endif
                 </div>
@@ -128,10 +132,10 @@
 </div>
 @stop
 @section('custom-js')
-	<script src='https://vjs.zencdn.net/7.6.0/video.js'></script>
-	<script>
-		$('#my-video').bind("contextmenu",function(e){
-	      return false ;
-	   	});
-	</script>
+    <script src='https://vjs.zencdn.net/7.6.0/video.js'></script>
+    <script>
+        $('#my-video').bind("contextmenu",function(e){
+          return false ;
+        });
+    </script>
 @stop
