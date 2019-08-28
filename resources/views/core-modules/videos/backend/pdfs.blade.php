@@ -29,11 +29,11 @@
 						
 			</div>
 			
-			<form method="post" action="{{ route('admin-pdfs-delete-multiple-post') }}" class="prabal-confirm" id="prabal-delete-form">
+			{{--<form method="post" action="{{ route('admin-pdfs-delete-multiple-post') }}" class="prabal-confirm" id="prabal-delete-form">
 				{{ csrf_field() }}
 				<input type="submit" class="prabal-checkbox-submit btn btn-danger" related-id="add-row" related-form="prabal-delete-form" value="Delete">
 				<div class="place-for-id-checkbox"></div>
-			</form>
+			</form>--}}
 			
 				<div class="card-body">
 					<div class="col-sm-12">
