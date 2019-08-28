@@ -40,6 +40,7 @@
 								<th>Phone</th>
 								<th>No of Days</th>
 								<th>Description</th>
+								<th>Created At</th>
 								<th style="width: 100px">Actions</th>
 							</tr>
 						</thead>
