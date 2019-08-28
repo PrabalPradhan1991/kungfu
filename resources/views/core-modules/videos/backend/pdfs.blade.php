@@ -116,7 +116,7 @@
 									<div class="col-md-7 col-sm-12">
 										<div class="form-group">
 											<label for="pdf_title">Title</label>
-											<input type="text" class="form-control data-name" data-name="pdf_title[]" required>
+											<input type="text" class="form-control data-name" data-name="pdf_title[]">
 										</div>
 									</div>
 									
@@ -158,6 +158,7 @@
 			$('#ajax-add-pdfs').find('.data-name').each(function(){
 				if(!(this).hasAttribute("name")) {
 					$(this).attr('name', 'pdf[pdf_title][]')
+					$(this).attr('required', 'required')
 				}
 			})
 		})
