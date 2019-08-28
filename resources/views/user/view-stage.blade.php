@@ -62,7 +62,6 @@
                     <p>Your payment is under review</p>
                 @else
                     <form method="post" action="{{ route('buy-stage') }}">
-                        fsdf
                         <button type="submit" class="btn btn-default" name="payment_method" value="By Bank"><i class="fas fa-shopping-basket"></i> By Bank</button>
                         <button type="submit" class="btn btn-default" name="payment_method" value="By Paypal"><i class="fas fa-shopping-basket"></i> By Paypal</button>
                         {{ csrf_field() }}
