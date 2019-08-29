@@ -12,7 +12,7 @@
 <script>
 $( function() {
 	$( ".date" ).datepicker({ dateFormat: 'yy-mm-dd',changeMonth: true,
-    changeYear: true });
+    changeYear: true, yearRange: '-100:+1', });
 } );
 </script>
 <script src="{{ asset('assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js ')}}"></script>

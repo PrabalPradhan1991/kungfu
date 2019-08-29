@@ -4,7 +4,16 @@
 	 p{font-size: 16px; font-weight: bold;}
 	 i{margin-right: 10px;}
 	 .remove-video {padding:2px !important; width: 22px;}
-	 .remove-video i {font-size: 16px;}
+	 .remove-video i {font-size:22px; color: red; margin-top: -10px;}
+	 .btn-danger {width: 140px;}
+	 .btn-info{width: 140px;}
+	 .btn-success{width: 200px;}
+	 form {margin: 0;}
+
+@media(max-width: 480px){
+
+	.remove-video i { margin-top:5px;}
+}	 
 
 </style>
 @section('content')
@@ -44,104 +53,104 @@
 									{{ csrf_field() }}
 								</form>
 							@endforeach
-				<div class="table-responsive">
-					<form method="post" action="{{ route('admin-edit-videos-get') }}">
-						<table id="add-row" class="table table-bordered table-striped">
-							<thead>
-								<tr>
-									<th style="width: 10px">Sn</th>
-									<th>Title</th>
-									<th>Ordering</th>
-									<th style="width: 100px">Actions</th>
-								</tr>
-							</thead>
-							<tbody>
-								@foreach($videos as $index => $d)
-									<tr>
-										<td><input type="checkbox" name="rid[]" value="{{ $d->id }}" class="id-checkbox">{{ $index + 1 }}</td>
-										<td><input type="text" name="video[{{ $d->id }}][title]" value="{{ $d->title }}"></td>
-										<td><input type="number" name="video[{{ $d->id }}][ordering]" value="{{ $d->ordering }}"></td>
-										<td>
-											<div class="form-button-action">	
-												<button type="submit" data-toggle="tooltip" title="" class="btn btn-link btn-danger a_submit_button" data-original-title="Remove" related-id="admin-videos-delete-post-{{ $d->id }}">
-												<i class="fa fa-times"></i>
-												</button>
-											</div>			
-										</td>
-									</tr>
-								@endforeach
-							</tbody>
-						</table>
-						{{ csrf_field() }}
-						<input type="submit" class="btn btn-danger" value="Edit">
-					</form>
-				</div>
-				@else
-					<div class="row">
-						<div class="col-md-12">
-							No data found
-						</div>
-					</div>
-				@endif
-				<form method="post" enctype="multipart/form-data">
-						<div class="form-group">
-							{{--<label for="videos">Videos</label>--}}
-							<a class="add-video btn btn-info" href="#"><i class="fas fa-plus-circle"></i>Add Video</a>
-							<div id="ajax-add-videos-element" style="display: none">
-								<div class="row">
-									<div class="col-md-5 col-sm-12">
-										<div class="form-group">
-											<label for="video">Video</label>
-											<input type="file" accept="video/mp4">
-											<input type="hidden" class="video">
-											<input type="hidden" class="mime">
-											<img src=""/>
-											<p></p>
-											<div class="row">
-												<div class="col-md-9">
-													<div class="progress" style="display: flex;">
-														<div class="progress-bar initial" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%; opacity: 100;">
-														</div>
-													</div>
-												</div>
-												<div class="col-md-1">
-													<a href="#" class="btn btn-danger remove-video"><i class="fas fa-times-circle"></i></a>
-												</div>
-											</div>
-											
-											<span class="error-block">
-											</span>
-										</div>
-									</div>
-									<div class="col-md-7 col-sm-12">
-										<div class="form-group">
-											<label for="video_title">Title</label>
-											<input type="text" class="form-control data-name" data-name="video_title[]" required>
-										</div>
-									</div>
-									
-									
+							<div class="table-responsive">
+								<form method="post" action="{{ route('admin-edit-videos-get') }}">
+									<table id="add-row" class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th style="width: 10px">Sn</th>
+												<th>Title</th>
+												<th>Ordering</th>
+												<th style="width: 100px">Actions</th>
+											</tr>
+										</thead>
+										<tbody>
+											@foreach($videos as $index => $d)
+												<tr>
+													<td><input type="checkbox" name="rid[]" value="{{ $d->id }}" class="id-checkbox">{{ $index + 1 }}</td>
+													<td><input type="text" name="video[{{ $d->id }}][title]" value="{{ $d->title }}"></td>
+													<td><input type="number" name="video[{{ $d->id }}][ordering]" value="{{ $d->ordering }}"></td>
+													<td>
+														<div class="form-button-action">	
+															<button type="submit" data-toggle="tooltip" title="" class="btn btn-link btn-danger a_submit_button" data-original-title="Remove" related-id="admin-videos-delete-post-{{ $d->id }}">
+															<i class="fa fa-times"></i>
+															</button>
+														</div>			
+													</td>
+												</tr>
+											@endforeach
+										</tbody>
+									</table>
+									{{ csrf_field() }}
+									<div class="form-group">
+										<input type="submit" class="btn btn-danger" value="Edit">
+									</div>	
+								</form>
+							</div>
+						@else
+							<div class="row">
+								<div class="col-md-12">
+									No data found
 								</div>
 							</div>
-							<div id="ajax-add-videos">
-								<input type="hidden" id="prabal-ajax-upload-image-csrf-token" value="{{ csrf_token() }}">
-								<input type="hidden" id="prabal-ajax-upload-image-directory" value="videos">
-								<input type="hidden" id="prabal-ajax-upload-image-asset-type" value="video">
-								<input type="hidden" id="prabal-ajax-upload-image-loading-image" value="{{ asset('core/images/giphy.gif') }}">
-								<input type="hidden" id="ajax-upload-asset-post" value="{{ route('ajax-upload-asset-post') }}">
+						@endif
+						<form method="post" enctype="multipart/form-data">
+								<div class="form-group">
+									{{--<label for="videos">Videos</label>--}}
+									<a class="add-video btn btn-info" href="#"><i class="fas fa-plus-circle"></i>Add Video</a>
+									<div id="ajax-add-videos-element" style="display: none">
+										<div class="row">
+											<div class="col-md-5 col-xs-12">
+												<div class="form-group">
+													<label for="video">Video</label>
+													<input type="file" accept="video/mp4">
+													<input type="hidden" class="video">
+													<input type="hidden" class="mime">
+													<img src=""/>
+													<p></p>
+													<div class="row">
+														<div class="col-md-9 col-xs-8">
+															<div class="progress" style="display: flex;">
+																<div class="progress-bar initial" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%; opacity: 100;"></div>
+															</div>
+														</div>
+														<div class="col-md-1 col-xs-4">
+															<a href="#" class="btn remove-video"><i class="fas fa-times-circle"></i></a>
+														</div>
+													</div>
+													
+													<span class="error-block">
+													</span>
+												</div>
+											</div>
+											<div class="col-md-7 col-sm-12">
+												<div class="form-group">
+													<label for="video_title">Title</label>
+													<input type="text" class="form-control data-name" data-name="video_title[]">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div id="ajax-add-videos">
+										<input type="hidden" id="prabal-ajax-upload-image-csrf-token" value="{{ csrf_token() }}">
+										<input type="hidden" id="prabal-ajax-upload-image-directory" value="videos">
+										<input type="hidden" id="prabal-ajax-upload-image-asset-type" value="video">
+										<input type="hidden" id="prabal-ajax-upload-image-loading-image" value="{{ asset('core/images/giphy.gif') }}">
+										<input type="hidden" id="ajax-upload-asset-post" value="{{ route('ajax-upload-asset-post') }}">
+									</div>
+								</div>
+
+
+								{{ csrf_field() }}
+							<div class="card-action">
+								<div class="col-sm-12 text-center">				
+									<input type="submit" class="btn btn-success" value="Save">
+								</div>	
 							</div>
-						</div>
-
-
+						</form>
 					</div>	
 				</div>
-			{{ csrf_field() }}
-				<div class="card-action">
-					<div class="col-sm-12 text-center">				
-						<button type="submit" class="btn btn-success">Save</button>
-					</div>	
-				</div>
-			</form>
+				
 		</div>
 	</div>
 </div>			
@@ -156,6 +165,7 @@
 			$('#ajax-add-videos').find('.data-name').each(function(){
 				if(!(this).hasAttribute("name")) {
 					$(this).attr('name', 'video[video_title][]')
+					$(this).attr('required', 'required')
 				}
 			})
 		})

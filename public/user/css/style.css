@@ -220,7 +220,7 @@ line-height:60px;
 /*===========change-password-page start ===========*/
 
 
-	.chpass{margin-top:14px; border:1px solid #ccc; padding: 16px; }
+	.chpass{margin-top:14px; border:1px solid #ccc; padding: 16px; margin-bottom: 100px;}
 
 .chpass h1{margin:0; color:red;
 display: inline-block;
@@ -238,7 +238,7 @@ font-size: 24px;
 }
 .chpass .stages {
     margin: 10px 0;
-    height: 74px;
+    height: 100px;
 }
 
 @media(max-width: 480px){

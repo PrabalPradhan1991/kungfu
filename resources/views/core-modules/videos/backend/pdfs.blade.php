@@ -3,8 +3,17 @@
 	.edit-stage h1{color:#0E4F88 !important; font-size:36px; border-bottom: 2px solid #0E4F88; line-height: 50px;}
 	 p{font-size: 16px; font-weight: bold;}
 	 i{margin-right: 10px;}
-	 .remove-pdf {padding:2px !important; width:22px;}
-	 .remove-pdf i {font-size:16px;}
+	 .remove-pdf {padding:2px !important; }
+	 .remove-pdf i {font-size:22px; color: red; margin-top: -10px;}
+	 .btn-danger {width: 140px;}
+	 .btn-info{width: 140px;}
+	 .btn-success{width: 200px;}
+	 form {margin: 0;}
+
+ @media(max-width:480px){
+
+	.remove-pdf i { margin-top:5px;}
+}
 
 </style>
 @section('content')
@@ -72,7 +81,9 @@
 							</tbody>
 						</table>
 						{{ csrf_field() }}
-						<input type="submit" class="btn btn-danger" value="Edit">
+						<div class="form-group">
+							<input type="submit" class="btn btn-danger" value="Edit">
+						</div>	
 					</form>
 				</div>
 				@else
@@ -97,14 +108,14 @@
 											<img src=""/>
 											<p></p>
 											<div class="row">
-												<div class="col-md-10">
+												<div class="col-md-10 col-xs-9">
 													<div class="progress" style="display: flex;">
 														<div class="progress-bar initial" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%; opacity: 100;">
 														</div>
 													</div>
 												</div>
-												<div class="col-md-1">
-													<a href="#" class="btn btn-danger remove-pdf"><i class="fas fa-times-circle"></i></a>
+												<div class="col-md-1 col-xs-3">
+													<a href="#" class="btn  remove-pdf"><i class="fas fa-times-circle"></i></a>
 												</div>
 											</div>
 											
@@ -116,7 +127,7 @@
 									<div class="col-md-7 col-sm-12">
 										<div class="form-group">
 											<label for="pdf_title">Title</label>
-											<input type="text" class="form-control data-name" data-name="pdf_title[]" required>
+											<input type="text" class="form-control data-name" data-name="pdf_title[]">
 										</div>
 									</div>
 									
@@ -158,6 +169,7 @@
 			$('#ajax-add-pdfs').find('.data-name').each(function(){
 				if(!(this).hasAttribute("name")) {
 					$(this).attr('name', 'pdf[pdf_title][]')
+					$(this).attr('required', 'required')
 				}
 			})
 		})
